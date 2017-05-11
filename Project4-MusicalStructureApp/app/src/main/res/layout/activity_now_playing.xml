@@ -19,10 +19,12 @@
         android:textSize="@dimen/text_size_info" />
 
     <Button
+        android:id="@+id/show_details_button"
         style="@style/button_style"
         android:text="@string/button_text_show_details"/>
 
     <Button
+        android:id="@+id/song_list_button"
         style="@style/button_style"
         android:text="@string/button_text_song_list"/>
 

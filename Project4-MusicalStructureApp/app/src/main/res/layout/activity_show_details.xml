@@ -19,6 +19,7 @@
         android:textSize="@dimen/text_size_info" />
 
     <Button
+        android:id="@+id/play_song_button"
         style="@style/button_style"
         android:text="@string/button_text_now_playing"/>
 
