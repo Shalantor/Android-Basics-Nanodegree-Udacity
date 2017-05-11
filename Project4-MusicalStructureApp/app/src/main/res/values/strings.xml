@@ -52,4 +52,12 @@
         about the album the song belongs to and about the artist. From this activity the user
         can navigate back to the now playing activity.
     </string>
+
+    <!-- Text on buttons -->
+    <string name="button_text_create_play_list">Create Playlist</string>
+    <string name="button_text_song_list">Song List</string>
+    <string name="button_text_login">Login</string>
+    <string name="button_text_now_playing">Play Song</string>
+    <string name="button_text_search_song">Search Song</string>
+    <string name="button_text_show_details">Show Details</string>
 </resources>
