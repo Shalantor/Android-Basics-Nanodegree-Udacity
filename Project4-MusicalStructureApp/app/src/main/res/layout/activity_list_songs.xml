@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.georgekaraolanis.project4_musicalstructureapp.ListSongsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        style="@style/text_view_style"
+        android:text="@string/label_list_songs"
+        android:textSize="@dimen/text_size_label"
+        android:gravity="center"/>
+
+    <TextView
+        style="@style/text_view_style"
+        android:text="@string/info_list_songs"
+        android:textSize="@dimen/text_size_info" />
+
+    <Button
+        style="@style/button_style"
+        android:text="@string/button_text_search_song"/>
+
+    <Button
+        style="@style/button_style"
+        android:text="@string/button_text_now_playing"/>
+
+    <Button
+        style="@style/button_style"
+        android:text="@string/button_text_create_play_list"/>
+
+</LinearLayout>
