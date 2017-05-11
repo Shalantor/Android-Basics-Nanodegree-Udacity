@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_label">20sp</dimen>
+    <dimen name="text_size_info">14sp</dimen>
+    <dimen name="text_size_buttons">15sp</dimen>
+    <dimen name="min_width_buttons">88dp</dimen>
+    <dimen name="height_buttons">36dp</dimen>
+    <dimen name="corner_radius_buttons">2dp</dimen>
+    <dimen name="margin_left_right">16dp</dimen>
+    <dimen name="margin_top_bottom">8dp</dimen>
+</resources>
