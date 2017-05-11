@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Project 4 - Musical Structure App</string>
+
+    <!-- These strings will be used to label the activities -->
+    <string name="label_create_playlist">Create a custom Playlist</string>
+    <string name="label_login">Login or Sign up</string>
+    <string name="label_list_songs">List of all available songs and albums</string>
+    <string name="label_now_playing">Now playing </string>
+    <string name="label_search_song">Search for a song,album or artist</string>
+    <string name="label_show_details">Show details about song</string>
+
+    <!-- The info that is displayed on each activity -->
+    <string name="info_create_playlist">
+        In this activity the user will be able to create a playlist of his own. The
+        user can freely choose among the available songs or even search for a song by using
+        the search song activity, to add to his playlist. Once created, the user will be redirected
+        to the activity that lists the songs available to listen to. In order to communicate with
+        the server that stores the playlist, the app should use the class java.net.Socket.
+    </string>
+    <string name="info_list_songs">
+        Here the user can view all songs and albums that are available online and sort
+        them either by name or by artist. From these songs, the user can choose one to
+        get to the now playing activity and listen to it. To display the songs in a nice
+        way, the app should use a ScrollView and to communicate with the server, the class
+        java.net.Socket is required.
+    </string>
+    <string name="info_login">
+        In this activity the user can log into the app service or create an account. This
+        account will be used to associate the user with particular play lists that he may
+        create. However to avoid having the user log in every time he uses the app,
+        after the first time it should just display a button to continue to the next activity
+        or to log in with another account. The class java.net.Socket can be used to do that.
+        After successful authentication, the app navigates to the list song activity.
+    </string>
+    <string name="info_now_playing">
+        This activity is used for playing the requested song from the user. It displays
+        some basic info, like the song name and the artist. From here the user can navigate
+        to the show details activity, to get more information. To play the song the
+        android.media.MediaPlayer class can be used. This activity should also show suggestions
+        for the next song to play or if the user listens to a play list, play the next song
+        on it. The user can also go back to the list songs activity.
+    </string>
+    <string name="info_search_song">
+        In this activity, the user can search for a song, album or artist and view the
+        results of his search. From there, he can choose to either play that song or to
+        add it to his play list. In order to find the items the user is looking for, a
+        connection to the app server is required, using the class java.net.Socket. The user
+        can also navigate to the now playing or the list songs activity.
+    </string>
+    <string name="info_show_details">
+        Here the user can read information about a song. This information includes details
+        about the album the song belongs to and about the artist. From this activity the user
+        can navigate back to the now playing activity.
+    </string>
+</resources>
