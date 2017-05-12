@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Project1-SingleScreenApp</string>
+    <string name="title">University of Thessaly</string>
+    <string name="about">About</string>
+    <string name="description">The IEEE Student Branch of Volos was founded in 2015 with just 8 members.
+        It now consists of over 30 students of the University of Thessaly. Our goal is to help and inform other
+        students in their fields of study and to work on collaborative projects.</string>
+    <string name="contact">Contact info</string>
+    <string name="phone">Phone Number:</string>
+    <string name="phone_number">555-123-555-123</string>
+    <string name="email">Email Address:</string>
+    <string name="email_address">dummymail@gmail.com</string>
+    <string name="website">Website:</string>
+    <string name="website_address">https://ieee.e-ce.uth.gr/</string>
+    <string name="location">Location:</string>
+    <string name="location_description">Volos, Greece</string>
+    <string name="ieee_text_part_1">IEEE Student Branch</string>
+    <string name="ieee_text_part_2">of Volos</string>
+</resources>
