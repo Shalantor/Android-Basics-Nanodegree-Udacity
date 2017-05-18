@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="vertical_space_large">16dp</dimen>
+    <dimen name="vertical_space_medium">8dp</dimen>
+    <dimen name="text_size">15sp</dimen>
+    <dimen name="score_text_size">20sp</dimen>
+    <dimen name="border_radius">5dp</dimen>
+    <dimen name="reset_button_margin">16dp</dimen>
+    <dimen name="space_left_right">16dp</dimen>
+</resources>
