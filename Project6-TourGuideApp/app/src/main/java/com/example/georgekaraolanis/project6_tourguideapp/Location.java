@@ -18,9 +18,9 @@ public class Location {
     public Location(int nameId,int phoneNumberId,int addressId,
                     int descriptionId,int ratingId){
         this.nameId = nameId;
-        this.phoneNumberId = phoneNumberId;
-        this.addressId = addressId;
         this.descriptionId = descriptionId;
+        this.addressId = addressId;
+        this.phoneNumberId = phoneNumberId;
         this.ratingId = ratingId;
     }
 
