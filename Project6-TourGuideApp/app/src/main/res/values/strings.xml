@@ -1,7 +1,172 @@
 <resources>
     <string name="app_name">Project6-TourGuideApp</string>
+
+    <!-- Titles for the TabLayout -->
     <string name="category_restaurants">Restaurants</string>
     <string name="category_hotels">Hotels</string>
     <string name="category_beaches">Beaches</string>
     <string name="category_attractions">Attractions</string>
+
+    <!-- Data for Restaurants -->
+    <string name="mavrikos_restaurant_name">Mavrikos Restaurant</string>
+    <string name="mavrikos_restaurant_description">Cosy * Casual * Good for kids</string>
+    <string name="mavrikos_restaurant_address">Lindos,Rhodes</string>
+    <string name="mavrikos_restaurant_phone">22440 00000</string>
+    <string name="mavrikos_restaurant_rating">4.2</string>
+
+    <string name="tanam_restaurant_name">Tanam Restaurant</string>
+    <string name="tanam_restaurant_description">Great cocktails * Quiet * Cosy</string>
+    <string name="tanam_restaurant_address">Rodos</string>
+    <string name="tanam_restaurant_phone">22440 00001</string>
+    <string name="tanam_restaurant_rating">4.9</string>
+
+    <string name="capricci_restaurant_name">Capricci Italian Restaurant</string>
+    <string name="capricci_restaurant_description">Cosy * Casual * Good for kids</string>
+    <string name="capricci_restaurant_address">Rodos</string>
+    <string name="capricci_restaurant_phone">22440 00002</string>
+    <string name="capricci_restaurant_rating">4.6</string>
+
+    <string name="sofia_restaurant_name">Taverna Mama Sofia</string>
+    <string name="sofia_restaurant_description">Cosy * Casual * Groups</string>
+    <string name="sofia_restaurant_address">Rodos</string>
+    <string name="sofia_restaurant_phone">22440 00003</string>
+    <string name="sofia_restaurant_rating">4.6</string>
+
+    <string name="marco_restaurant_name">Marco polo cafe</string>
+    <string name="marco_restaurant_description">Cosy * Casual * Groups</string>
+    <string name="marco_restaurant_address">Rodos</string>
+    <string name="marco_restaurant_phone">22440 00004</string>
+    <string name="marco_restaurant_rating">4.2</string>
+
+    <string name="valentina_restaurant_name">Valentina\'s</string>
+    <string name="valentina_restaurant_description">Cosy * Casual * Good for kids</string>
+    <string name="valentina_restaurant_address">Lardos</string>
+    <string name="valentina_restaurant_phone">22440 00005</string>
+    <string name="valentina_restaurant_rating">4.9</string>
+
+    <string name="konstantin_restaurant_name">Konstantin Restaurant Cafe</string>
+    <string name="konstantin_restaurant_description">Cosy * Casual * Good for kids</string>
+    <string name="konstantin_restaurant_address">Kalathos</string>
+    <string name="konstantin_restaurant_phone">22440 00006</string>
+    <string name="konstantin_restaurant_rating">4.6</string>
+
+    <string name="pegasus_restaurant_name">Pegasus Restaurant</string>
+    <string name="pegasus_restaurant_description">Great cocktails * Casual * Cosy</string>
+    <string name="pegasus_restaurant_address">Kremasti</string>
+    <string name="pegasus_restaurant_phone">22440 00007</string>
+    <string name="pegasus_restaurant_rating">4.1</string>
+
+    <string name="manolis_restaurant_name">Manolis Taverna</string>
+    <string name="manolis_restaurant_description">Cosy * Casual * Locals</string>
+    <string name="manolis_restaurant_address">Faliraki</string>
+    <string name="manolis_restaurant_phone">22440 00008</string>
+    <string name="manolis_restaurant_rating">4.7</string>
+
+    <string name="tsambikos_restaurant_name">Taverna Tsambikos</string>
+    <string name="tsambikos_restaurant_description">Cosy * Casual * Good for kids</string>
+    <string name="tsambikos_restaurant_address">Kolympia</string>
+    <string name="tsambikos_restaurant_phone">22440 00009</string>
+    <string name="tsambikos_restaurant_rating">4.7</string>
+
+    <!-- Data for Hotels -->
+    <string name="plaza_hotel_name">Western Plaza Hotel</string>
+    <string name="plaza_hotel_address">Rodos</string>
+    <string name="plaza_hotel_phone">22440 00010</string>
+    <string name="plaza_hotel_rating">4.4</string>
+
+    <string name="mitsis_hotel_name">Mitsis Alila Exclusive Resort</string>
+    <string name="mitsis_hotel_address">Lindos</string>
+    <string name="mitsis_hotel_phone">22440 00011</string>
+    <string name="mitsis_hotel_rating">4.8</string>
+
+    <string name="aqua_hotel_name">AquaGrand Resort</string>
+    <string name="aqua_hotel_address">Rodos</string>
+    <string name="aqua_hotel_phone">22440 00012</string>
+    <string name="aqua_hotel_rating">4.8</string>
+
+    <string name="princess_hotel_name">Rodos Princess Beach Hotel</string>
+    <string name="princess_hotel_address">Lardos</string>
+    <string name="princess_hotel_phone">22440 00013</string>
+    <string name="princess_hotel_rating">4.4</string>
+
+    <string name="atrium_hotel_name">Atrium Platinum Resort Hotel</string>
+    <string name="atrium_hotel_address">Laxania</string>
+    <string name="atrium_hotel_phone">22440 00014</string>
+    <string name="atrium_hotel_rating">4.8</string>
+
+    <string name="mare_hotel_name">Lindos Mare Hotel</string>
+    <string name="mare_hotel_address">Lindos</string>
+    <string name="mare_hotel_phone">22440 00015</string>
+    <string name="mare_hotel_rating">4.9</string>
+
+    <string name="elysium_hotel_name">Elysium Resort and Spa</string>
+    <string name="elysium_hotel_address">Rodos</string>
+    <string name="elysium_hotel_phone">22440 00015</string>
+    <string name="elysium_hotel_rating">4.7</string>
+
+    <string name="horizon_hotel_name">Rhodes Horizon Resort</string>
+    <string name="horizon_hotel_address">Rodos</string>
+    <string name="horizon_hotel_phone">22440 00016</string>
+    <string name="horizon_hotel_rating">4.6</string>
+
+    <string name="porta_hotel_name">Kokkini Porta Rossa</string>
+    <string name="porta_hotel_address">Lindos</string>
+    <string name="porta_hotel_phone">22440 00017</string>
+    <string name="porta_hotel_rating">5.0</string>
+
+    <string name="amathus_hotel_name">Amathus Beach Hotel</string>
+    <string name="amathus_hotel_address">Lardos</string>
+    <string name="amathus_hotel_phone">22440 00018</string>
+    <string name="amathus_hotel_rating">4.5</string>
+
+    <!-- Data for Beaches -->
+    <string name="elli_beach_name">Elli Beach</string>
+    <string name="elli_beach_address">Rodos</string>
+
+    <string name="pavlos_beach_name">Lindos Beach Agios Pavlos</string>
+    <string name="pavlos_beach_address">Lindos</string>
+
+    <string name="tsambika_beach_name">Tsambika Beach</string>
+    <string name="tsambika_beach_address">Archangelos</string>
+
+    <string name="afandou_beach_name">Afandou Beach</string>
+    <string name="afandou_beach_address">Afandou</string>
+
+    <string name="prasonisi_beach_name">Prasonisi Beach</string>
+    <string name="prasonisi_beach_address">Prasonisi</string>
+
+    <string name="faliraki_beach_name">Faliraki Beach</string>
+    <string name="faliraki_beach_address">Faliraki</string>
+
+    <string name="quinn_beach_name">Ladiko Anthony Quinn</string>
+    <string name="quinn_beach_address">Faliraki</string>
+
+    <string name="kolympia_beach_name">Kolympia Beach</string>
+    <string name="kolympia_beach_address">Kolympia</string>
+
+    <string name="pefki_beach_name">Pefki</string>
+    <string name="pefki_beach_address">Lindos</string>
+
+    <string name="agathi_beach_name">Agathi Beach</string>
+    <string name="agathi_beach_address">Xaraki</string>
+
+    <!-- Data for attractions -->
+    <string name="palace_attraction_name">Palace of Grand Master</string>
+
+    <string name="acropolis_attraction_name">Acropolis of Lindos</string>
+
+    <string name="monastery_attraction_name">Monastery of Filerimos</string>
+
+    <string name="valley_attraction_name">Valley of Butterflies</string>
+
+    <string name="toy_museum_attraction_name">Toy Museum</string>
+
+    <string name="castle_attraction_name">Castle of Kritinia</string>
+
+    <string name="hammam_attraction_name">Great Hammam</string>
+
+    <string name="bee_attraction_name">Museum of Bee and Honey</string>
+
+    <string name="springs_attraction_name">Seven Springs</string>
+
 </resources>
