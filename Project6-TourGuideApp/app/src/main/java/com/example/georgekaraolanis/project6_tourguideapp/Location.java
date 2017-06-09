@@ -10,9 +10,16 @@ public class Location {
     private int descriptionId = NO_SOURCE_PROVIDED;
     private int ratingId = NO_SOURCE_PROVIDED;
     private int imageResourceId = NO_SOURCE_PROVIDED;
+    private String locationType;
 
-    /* Constant value that represents no image was provided for this word */
+    /* Constant value that represents no resource was provided for this word */
     private static final int NO_SOURCE_PROVIDED = -1;
+
+    /*Constant for string values used in the type variable*/
+    public static final String RESTAURANT = "restaurant";
+    public static final String HOTEL = "hotel";
+    public static final String BEACH = "beach";
+    public static final String ATTRACTION = "attraction";
 
     /*Constructor, initiate variables for Restaurants*/
     public Location(int nameId,int phoneNumberId,int addressId,
@@ -22,6 +29,7 @@ public class Location {
         this.addressId = addressId;
         this.phoneNumberId = phoneNumberId;
         this.ratingId = ratingId;
+        locationType = RESTAURANT;
     }
 
     /*Constructor, initiate variables for Hotels*/
@@ -30,6 +38,7 @@ public class Location {
         this.phoneNumberId = phoneNumberId;
         this.addressId = addressId;
         this.ratingId = ratingId;
+        locationType = HOTEL;
     }
 
     /*Constructor, initiate variables for Beaches*/
@@ -37,12 +46,14 @@ public class Location {
         this.nameId = nameId;
         this.addressId = addressId;
         this.imageResourceId = imageResourceId;
+        locationType = BEACH;
     }
 
     /*Constructor, initiate variables for attractions*/
     public Location(int nameId, int imageResourceId){
         this.nameId = nameId;
         this.imageResourceId = imageResourceId;
+        locationType = ATTRACTION;
     }
 
     public int getNameId() {
@@ -67,5 +78,9 @@ public class Location {
 
     public int getImageResourceId() {
         return imageResourceId;
+    }
+
+    public String getLocationType() {
+        return locationType;
     }
 }
