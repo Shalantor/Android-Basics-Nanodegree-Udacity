@@ -8,6 +8,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*Show the main activity's xml file*/
         setContentView(R.layout.activity_main);
+
+        /*Get the viewPager*/
     }
 }
