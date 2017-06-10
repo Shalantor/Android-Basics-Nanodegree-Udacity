@@ -26,6 +26,26 @@ public class HotelsFragment extends Fragment {
 
         /*TODO:Create list of hotels, add items later*/
         final ArrayList<Location> hotels = new ArrayList<>();
+        hotels.add(new Location(R.string.plaza_hotel_name, R.string.plaza_hotel_address,
+                R.string.plaza_hotel_phone, R.string.plaza_hotel_rating));
+        hotels.add(new Location(R.string.mitsis_hotel_name, R.string.mitsis_hotel_address,
+                R.string.mitsis_hotel_phone, R.string.mitsis_hotel_rating));
+        hotels.add(new Location(R.string.aqua_hotel_name, R.string.aqua_hotel_address,
+                R.string.aqua_hotel_phone, R.string.aqua_hotel_rating));
+        hotels.add(new Location(R.string.princess_hotel_name, R.string.princess_hotel_address,
+                R.string.princess_hotel_phone, R.string.princess_hotel_rating));
+        hotels.add(new Location(R.string.atrium_hotel_name, R.string.atrium_hotel_address,
+                R.string.atrium_hotel_phone, R.string.atrium_hotel_rating));
+        hotels.add(new Location(R.string.mare_hotel_name, R.string.mare_hotel_address,
+                R.string.mare_hotel_phone, R.string.mare_hotel_rating));
+        hotels.add(new Location(R.string.elysium_hotel_name, R.string.elysium_hotel_address,
+                R.string.elysium_hotel_phone, R.string.elysium_hotel_rating));
+        hotels.add(new Location(R.string.porta_hotel_name, R.string.porta_hotel_address,
+                R.string.porta_hotel_phone, R.string.porta_hotel_rating));
+        hotels.add(new Location(R.string.horizon_hotel_name, R.string.horizon_hotel_address,
+                R.string.horizon_hotel_phone, R.string.horizon_hotel_rating));
+        hotels.add(new Location(R.string.amathus_hotel_name, R.string.amathus_hotel_address,
+                R.string.amathus_hotel_phone, R.string.amathus_hotel_rating));
 
         /*Create a location adapter whose data source is the list of hotels above*/
         LocationAdapter adapter = new LocationAdapter(getActivity(), hotels);

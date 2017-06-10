@@ -22,8 +22,7 @@ public class Location {
     public static final String ATTRACTION = "attraction";
 
     /*Constructor, initiate variables for Restaurants*/
-    public Location(int nameId,int phoneNumberId,int addressId,
-                    int descriptionId,int ratingId){
+    public Location(int nameId,int descriptionId,int addressId,int phoneNumberId, int ratingId){
         this.nameId = nameId;
         this.descriptionId = descriptionId;
         this.addressId = addressId;
@@ -33,7 +32,7 @@ public class Location {
     }
 
     /*Constructor, initiate variables for Hotels*/
-    public Location(int nameId,int phoneNumberId,int addressId, int ratingId){
+    public Location(int nameId,int addressId,int phoneNumberId, int ratingId){
         this.nameId = nameId;
         this.phoneNumberId = phoneNumberId;
         this.addressId = addressId;

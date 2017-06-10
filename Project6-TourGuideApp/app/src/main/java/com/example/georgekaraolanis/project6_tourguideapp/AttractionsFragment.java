@@ -27,6 +27,20 @@ public class AttractionsFragment extends Fragment {
 
         /*TODO:Create list of attractions, add items later*/
         final ArrayList<Location> attractions = new ArrayList<>();
+        attractions.add(new Location(R.string.palace_attraction_name,R.drawable.palace));
+        attractions.add(new Location(R.string.acropolis_attraction_name,R.drawable.acropolis));
+        attractions.add(new Location(R.string.monastery_attraction_name,R.drawable.filerimos));
+        attractions.add(new Location(R.string.valley_attraction_name,R.drawable.valley));
+        attractions.add(new Location(R.string.toy_museum_attraction_name,R.drawable.toy_museum));
+        attractions.add(new Location(R.string.castle_attraction_name,R.drawable.castle_kritinia));
+        attractions.add(new Location(R.string.hammam_attraction_name,R.drawable.hammam));
+        attractions.add(new Location(R.string.bee_attraction_name,R.drawable.bee));
+        attractions.add(new Location(R.string.springs_attraction_name,R.drawable.springs));
+        attractions.add(new Location(R.string.aquarium_attraction_name,R.drawable.aquarium));
+
+
+
+
 
         /*Create a location adapter whose data source is the list of hotels above*/
         LocationAdapter adapter = new LocationAdapter(getActivity(), attractions);
