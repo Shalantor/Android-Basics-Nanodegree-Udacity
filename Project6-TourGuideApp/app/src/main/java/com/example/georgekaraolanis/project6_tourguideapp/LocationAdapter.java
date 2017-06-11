@@ -41,6 +41,9 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         TextView ratingTextView = (TextView) listItemView.findViewById(R.id.rating);
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
 
+        /*Get the LinearLayout containing the rating*/
+
+
         /*Now get its type and based on that, show or hide some Views*/
         String type = currentLocation.getLocationType();
 
