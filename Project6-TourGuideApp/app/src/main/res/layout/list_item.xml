@@ -46,12 +46,30 @@
                 android:gravity="bottom"
                 android:textSize="@dimen/text_size"/>
 
-            <TextView
-                android:id="@+id/phone_number"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:textSize="@dimen/text_size" />
+                android:id="@+id/phone_number_layout"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14sp"
+                    android:layout_height="14sp"
+                    android:src="@android:drawable/stat_sys_phone_call"
+                    android:id="@+id/phone_call_image"
+                    android:background="@android:color/holo_blue_bright"/>
+
+                <TextView
+                    android:id="@+id/phone_number"
+                    android:layout_toRightOf="@id/phone_call_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:textSize="@dimen/text_size"
+                    android:layout_alignParentTop="true"/>
+
+            </RelativeLayout>
+
 
 
             <RelativeLayout
