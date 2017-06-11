@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -47,6 +48,8 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         RelativeLayout phoneLayout = (RelativeLayout) listItemView.findViewById(R.id.phone_number_layout);
         RelativeLayout ratingLayout = (RelativeLayout) listItemView.findViewById(R.id.rating_layout);
 
+        /*Get the rating bar*/
+        RatingBar ratingBar = (RatingBar) listItemView.findViewById(R.id.rating_bar);
 
         /*Now get its type and based on that, show or hide some Views*/
         String type = currentLocation.getLocationType();
@@ -62,6 +65,9 @@ public class LocationAdapter extends ArrayAdapter<Location> {
             phoneNumberTextView.setText(currentLocation.getPhoneNumberId());
             ratingTextView.setText(currentLocation.getRatingId());
 
+            /*Show rating*/
+            ratingBar.setRating(Float.parseFloat(getContext().getResources().getString(currentLocation.getRatingId())));
+
             /*Hide ImageView*/
             imageView.setVisibility(View.GONE);
         }
@@ -70,6 +76,9 @@ public class LocationAdapter extends ArrayAdapter<Location> {
             addressTextView.setText(currentLocation.getAddressId());
             phoneNumberTextView.setText(currentLocation.getPhoneNumberId());
             ratingTextView.setText(currentLocation.getRatingId());
+
+            /*Show rating in rating bar*/
+            ratingBar.setRating(Float.parseFloat(getContext().getResources().getString(currentLocation.getRatingId())));
 
             /*Hide ImageView and unused TextView*/
             descriptionTextView.setVisibility(View.GONE);
