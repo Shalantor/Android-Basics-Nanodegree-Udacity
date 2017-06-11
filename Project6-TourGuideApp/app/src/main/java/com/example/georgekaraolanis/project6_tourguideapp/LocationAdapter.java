@@ -64,12 +64,18 @@ public class LocationAdapter extends ArrayAdapter<Location> {
             phoneNumberTextView.setText(currentLocation.getPhoneNumberId());
             ratingTextView.setText(currentLocation.getRatingId());
 
-            /*Hide ImageView*/
+            /*Hide ImageView and unused TextView*/
+            descriptionTextView.setVisibility(View.GONE);
             imageView.setVisibility(View.GONE);
         }
         else if(type.equals(Location.BEACH)){
             /*Show corresponding text in TextViews*/
             addressTextView.setText(currentLocation.getAddressId());
+
+            /*Hide unused TextViews*/
+            descriptionTextView.setVisibility(View.GONE);
+            phoneNumberTextView.setVisibility(View.GONE);
+            ratingTextView.setVisibility(View.GONE);
 
             /*Show image of beach*/
             imageView.setImageResource(currentLocation.getImageResourceId());
@@ -81,6 +87,12 @@ public class LocationAdapter extends ArrayAdapter<Location> {
             imageView.setImageResource(currentLocation.getImageResourceId());
             /*Make sure the view is visible*/
             imageView.setVisibility(View.VISIBLE);
+
+            /*Hide unused TextViews*/
+            addressTextView.setVisibility(View.GONE);
+            descriptionTextView.setVisibility(View.GONE);
+            phoneNumberTextView.setVisibility(View.GONE);
+            ratingTextView.setVisibility(View.GONE);
         }
 
         return listItemView;
