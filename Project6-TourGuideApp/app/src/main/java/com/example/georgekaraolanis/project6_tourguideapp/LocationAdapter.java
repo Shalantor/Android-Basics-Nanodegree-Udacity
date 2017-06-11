@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -41,7 +42,10 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         TextView ratingTextView = (TextView) listItemView.findViewById(R.id.rating);
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
 
-        /*Get the LinearLayout containing the rating*/
+        /*Get the RelativeLayouts containing the textViews*/
+        RelativeLayout addressLayout = (RelativeLayout) listItemView.findViewById(R.id.address_layout);
+        RelativeLayout phoneLayout = (RelativeLayout) listItemView.findViewById(R.id.phone_number_layout);
+        RelativeLayout ratingLayout = (RelativeLayout) listItemView.findViewById(R.id.rating_layout);
 
 
         /*Now get its type and based on that, show or hide some Views*/
@@ -75,27 +79,23 @@ public class LocationAdapter extends ArrayAdapter<Location> {
             /*Show corresponding text in TextViews*/
             addressTextView.setText(currentLocation.getAddressId());
 
-            /*Hide unused TextViews*/
+            /*Hide unused TextViews and RelativeLayouts*/
             descriptionTextView.setVisibility(View.GONE);
-            phoneNumberTextView.setVisibility(View.GONE);
-            ratingTextView.setVisibility(View.GONE);
+            phoneLayout.setVisibility(View.GONE);
+            ratingLayout.setVisibility(View.GONE);
 
             /*Show image of beach*/
             imageView.setImageResource(currentLocation.getImageResourceId());
-            /*Make sure the view is visible*/
-            imageView.setVisibility(View.VISIBLE);
         }
         else{
             /*Show image of attraction*/
             imageView.setImageResource(currentLocation.getImageResourceId());
-            /*Make sure the view is visible*/
-            imageView.setVisibility(View.VISIBLE);
 
-            /*Hide unused TextViews*/
-            addressTextView.setVisibility(View.GONE);
+            /*Hide unused TextViews and RelativeLayouts*/
             descriptionTextView.setVisibility(View.GONE);
-            phoneNumberTextView.setVisibility(View.GONE);
-            ratingTextView.setVisibility(View.GONE);
+            addressLayout.setVisibility(View.GONE);
+            phoneLayout.setVisibility(View.GONE);
+            ratingLayout.setVisibility(View.GONE);
         }
 
         return listItemView;
