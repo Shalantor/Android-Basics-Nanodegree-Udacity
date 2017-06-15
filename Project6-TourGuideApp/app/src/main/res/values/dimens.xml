@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_size">14sp</dimen>
-    <dimen name="list_item_height">100dp</dimen>
-    <dimen name="image_dimension">90dp</dimen>
+    <dimen name="list_item_height">110dp</dimen>
+    <dimen name="image_dimension">100dp</dimen>
     <dimen name="image_padding_horizontal">16dp</dimen>
     <dimen name="text_padding_horizontal">16dp</dimen>
     <dimen name="list_item_padding_vertical">4dp</dimen>
+    <dimen name="padding_right">4dp</dimen>
+    <dimen name="icon_dimension">20dp</dimen>
 </resources>
