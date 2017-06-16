@@ -10,6 +10,8 @@ public class Location {
     private int descriptionId = NO_SOURCE_PROVIDED;
     private int ratingId = NO_SOURCE_PROVIDED;
     private int imageResourceId = NO_SOURCE_PROVIDED;
+
+    /*We need the type in location adapter*/
     private String locationType;
 
     /* Constant value that represents no resource was provided for this word */
