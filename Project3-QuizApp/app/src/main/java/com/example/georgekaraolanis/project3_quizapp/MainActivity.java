@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState != null) {
@@ -68,15 +67,11 @@ public class MainActivity extends AppCompatActivity {
                 showRadioButtons(multipleChoiceAnswers);
             }
         }
-
         getCorrectAnswers();
-
     }
-
 
     /*Show a question with check boxes*/
     private void showCheckBoxQuestion(int checkedAnswers){
-
 
         /*Remove previous answers*/
         CheckBox first = (CheckBox) findViewById(R.id.checkbox_1);
@@ -175,9 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
     }
-
 
     /*Method to show RadioButton question*/
     private void showRadioButtons(int checkedAnswer){
@@ -277,7 +270,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     /*Method to show EditText questions*/
     private void showEditText(String textAnswer){
 
@@ -330,14 +322,12 @@ public class MainActivity extends AppCompatActivity {
         if (!textAnswer.equals("")){
             editText.setText(textAnswer);
         }
-
     }
 
     /*Method to show next question*/
     public void showNextQuestion(View view){
 
         if (currentQuestion == 10){
-
             /*Hide everything except last two buttons*/
             LinearLayout checkBoxes = (LinearLayout) findViewById(R.id.checkboxes);
             checkBoxes.setVisibility(View.GONE);
@@ -362,7 +352,6 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Congratulations " + username + ", you got " + userScore
                     + "/10 correct.", Toast.LENGTH_LONG).show();
-
             return;
         }
 
@@ -392,7 +381,6 @@ public class MainActivity extends AppCompatActivity {
 
     /*get user answers*/
     private void getAnswer(){
-
         /*Checkbox question*/
         if (currentQuestion <= 3){
             CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkbox_1);
@@ -503,7 +491,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     /*Get correct answers*/
     private void getCorrectAnswers(){
         correct1 = Integer.parseInt(getResources().getString(R.string.answer_to_question_1));
@@ -517,7 +504,6 @@ public class MainActivity extends AppCompatActivity {
         correct9 = Integer.parseInt(getResources().getString(R.string.answer_to_question_9));
         correct10 = Integer.parseInt(getResources().getString(R.string.answer_to_question_10));
     }
-
 
     /*For screen rotation*/
     @Override
