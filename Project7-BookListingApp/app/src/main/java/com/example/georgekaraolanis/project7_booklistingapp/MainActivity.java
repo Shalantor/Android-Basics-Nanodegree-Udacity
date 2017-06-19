@@ -3,6 +3,7 @@ package com.example.georgekaraolanis.project7_booklistingapp;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,8 +47,13 @@ public class MainActivity extends AppCompatActivity {
                 /*Get text from EditText*/
                 EditText bookEditText = (EditText) findViewById(R.id.search_field);
 
-                /*Get book name the user entered*/
-                String bookName = bookEditText.getText().toString();
+                /*Get book name the user entered and trim leading and trailing whitespace*/
+                String bookName = bookEditText.getText().toString().trim();
+
+                /*Replace whitespace between words with +, like it is specified in Google book API*/
+                bookName = bookName.replace(" ","+");
+
+                Log.e("FAIL PRE", bookName);
 
                 /*Create asyncTask and execute*/
                 BookAsyncTask bookAsyncTask = new BookAsyncTask();
