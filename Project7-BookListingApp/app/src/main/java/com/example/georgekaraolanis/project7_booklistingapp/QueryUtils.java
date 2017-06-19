@@ -150,12 +150,18 @@ public final class QueryUtils {
                 /*Get title*/
                 String title = volumeInfo.getString("title");
 
-                /*Get List of authors */
-                JSONArray authorsJSON = volumeInfo.getJSONArray("authors");
+                /*Get List of authors. Some books don't have authors */
+                JSONArray authorsJSON = volumeInfo.optJSONArray("authors");
+
                 ArrayList<String> authors = new ArrayList<>();
 
-                for(int j = 0; j < authorsJSON.length(); j++){
-                    authors.add(authorsJSON.getString(i));
+                if (authorsJSON != null) {
+                    for (int j = 0; j < authorsJSON.length(); j++) {
+                        authors.add(authorsJSON.getString(j));
+                    }
+                }
+                else{
+                    authors.add("");
                 }
 
                 /*Get image bitmap*/
