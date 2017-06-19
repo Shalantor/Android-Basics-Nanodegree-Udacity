@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Project7-BookListingApp</string>
+    <string name="search_hint">Type book name</string>
+    <string name="search">Search</string>
+</resources>
