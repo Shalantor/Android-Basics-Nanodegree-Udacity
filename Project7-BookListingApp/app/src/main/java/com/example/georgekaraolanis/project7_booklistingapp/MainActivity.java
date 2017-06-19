@@ -1,10 +1,12 @@
 package com.example.georgekaraolanis.project7_booklistingapp;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -53,7 +55,12 @@ public class MainActivity extends AppCompatActivity {
                 /*Replace whitespace between words with +, like it is specified in Google book API*/
                 bookName = bookName.replace(" ","+");
 
-                Log.e("FAIL PRE", bookName);
+                /*set empty string to EditText*/
+                bookEditText.setText("");
+
+                /*Clear focus*/
+                InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                mgr.hideSoftInputFromWindow(bookEditText.getWindowToken(), 0);
 
                 /*Create asyncTask and execute*/
                 BookAsyncTask bookAsyncTask = new BookAsyncTask();
