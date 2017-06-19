@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*Maximum number of items to get from query. In API documentation it is
       stated that its maximum value is 40, so we will use that.*/
-    private static final String MAX_RESULTS_PARAMETER = "&maxResults=40";
+    private static final String MAX_RESULTS_PARAMETER = "&maxResults=20";
 
     /*AsyncTask for network operations*/
     private AsyncTask bookAsyncTask;

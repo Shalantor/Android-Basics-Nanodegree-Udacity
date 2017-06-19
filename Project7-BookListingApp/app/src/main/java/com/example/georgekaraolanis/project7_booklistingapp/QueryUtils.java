@@ -164,9 +164,13 @@ public final class QueryUtils {
                     authors.add("");
                 }
 
-                /*Get image bitmap*/
-                String thumbnailUrl = volumeInfo.getJSONObject("imageLinks").getString("smallThumbnail");
-                Bitmap thumbnail = getThumbnail(thumbnailUrl);
+                /*Get image bitmap, some images don't have this property*/
+                JSONObject imageLinks = volumeInfo.optJSONObject("imageLinks");
+
+                Bitmap thumbnail = null;
+                if (imageLinks != null) {
+                    thumbnail = getThumbnail(imageLinks.getString("smallThumbnail"));
+                }
 
                 /*Add to list*/
                 books.add(new Book(authors,title,thumbnail));
