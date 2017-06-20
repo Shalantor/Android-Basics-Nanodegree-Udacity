@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
         /*Check if recreated*/
         if (savedInstanceState != null) {
             currentList = savedInstanceState.getParcelableArrayList("key");
-            adapter.addAll(currentList);
+            if (currentList != null) {
+                adapter.addAll(currentList);
+            }
         }
 
         /*Empty TextView for ListView*/
