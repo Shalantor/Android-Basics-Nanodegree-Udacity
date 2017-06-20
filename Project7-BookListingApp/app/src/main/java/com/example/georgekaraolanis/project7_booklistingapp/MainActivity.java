@@ -15,6 +15,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -131,7 +133,17 @@ public class MainActivity extends AppCompatActivity {
             ProgressBar loadingIndicator = (ProgressBar) findViewById(R.id.loading_indicator);
             loadingIndicator.setVisibility(GONE);
 
-            if(books != null && !books.isEmpty()){
+            /*get TextView and check books*/
+            TextView emptyTextView = (TextView) findViewById(R.id.empty_view);
+
+            /*Case where we got a bad/no server response*/
+            if(books == null){
+                emptyTextView.setText(R.string.bad_server_response);
+            }
+            else if(books.isEmpty()){
+                emptyTextView.setText(R.string.no_books_found);
+            }
+            else{
                 adapter.addAll(books);
             }
         }

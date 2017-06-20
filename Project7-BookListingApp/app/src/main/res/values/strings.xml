@@ -6,4 +6,10 @@
     <string name="no_data_message">
         Please enter a book name or author in the above search field.
     </string>
+    <string name="bad_server_response">
+        Bad server response. Please try again.
+    </string>
+    <string name="no_books_found">
+        No books found for your input.
+    </string>
 </resources>

@@ -39,6 +39,11 @@ public final class QueryUtils {
         String JSONResponse = null;
         JSONResponse = makeHttpRequest(url);
 
+        /*Check if bad server response*/
+        if (JSONResponse == null){
+            return null;
+        }
+
         /*Extract relevant data from JSONResponse and create a list of Book objects*/
         List<Book> books = processJSONData(JSONResponse);
 
@@ -82,6 +87,7 @@ public final class QueryUtils {
                 JSONResponse = readData(inputStream);
             } else {
                 Log.e(LOG_TAG, "Response from server: " + urlConnection.getResponseCode());
+                return null;
             }
         } catch (IOException ex) {
             Log.e(LOG_TAG, "IOException when retrieving data ", ex);
