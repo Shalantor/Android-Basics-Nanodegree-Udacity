@@ -28,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     /*URL to read from*/
     private static final String QUERY_URL = "  https://www.googleapis.com/books/v1/volumes?q=";
 
+    /*Keys for savedInstanceState on rotation*/
+    private static final String BOOKS = "Books";
+    private static final String EDIT_TEXT_INPUT = "Input";
+
     /*Maximum number of items to get from query. In API documentation it is
       stated that its maximum value is 40, so we will use that.*/
     private static final String MAX_RESULTS_PARAMETER = "&maxResults=20";
@@ -51,12 +55,20 @@ public class MainActivity extends AppCompatActivity {
         /*Hide keyboard, as it pops up sometimes on screen rotation*/
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        /*Get EditText*/
+        final EditText bookEditText = (EditText) findViewById(R.id.search_field);
+
         /*Check if recreated*/
         if (savedInstanceState != null) {
-            currentList = savedInstanceState.getParcelableArrayList("key");
+            /*Get books*/
+            currentList = savedInstanceState.getParcelableArrayList(BOOKS);
             if (currentList != null) {
                 adapter.addAll(currentList);
             }
+            /*Get text */
+            String userInput = savedInstanceState.getString(EDIT_TEXT_INPUT);
+            bookEditText.setText(userInput);
+
         }
 
         /*Empty TextView for ListView*/
@@ -74,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                EditText bookEditText = (EditText) findViewById(R.id.search_field);
 
                 /*Hide keyboard*/
                 InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -165,7 +175,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList("key", currentList);
+        /*Store array of books*/
+        outState.putParcelableArrayList(BOOKS, currentList);
+
+        /*Store Edit text input*/
+        EditText userInput = (EditText) findViewById(R.id.search_field);
+        outState.putString(EDIT_TEXT_INPUT,userInput.getText().toString());
+
         super.onSaveInstanceState(outState);
     }
 
