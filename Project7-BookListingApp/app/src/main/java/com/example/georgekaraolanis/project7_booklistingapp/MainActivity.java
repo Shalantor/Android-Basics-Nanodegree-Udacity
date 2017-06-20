@@ -1,6 +1,8 @@
 package com.example.georgekaraolanis.project7_booklistingapp;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +12,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.view.View.GONE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
         adapter = new BookAdapter(this,new ArrayList<Book>());
         bookListView.setAdapter(adapter);
 
+        /*Empty TextView for ListView*/
+        final TextView emptyTextView = (TextView) findViewById(R.id.empty_view);
+        bookListView.setEmptyView(emptyTextView);
+
+        /*Hide loading indicator and show no data message to user*/
+        final ProgressBar loadingIndicator = (ProgressBar) findViewById(R.id.loading_indicator);
+        loadingIndicator.setVisibility(GONE);
+        emptyTextView.setText(R.string.no_data_message);
+
         /*Add click listener to button*/
         Button searchButton = (Button) findViewById(R.id.search_button);
 
@@ -46,25 +61,48 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                /*Get text from EditText*/
+                /*Get EditText*/
                 EditText bookEditText = (EditText) findViewById(R.id.search_field);
-
-                /*Get book name the user entered and trim leading and trailing whitespace*/
-                String bookName = bookEditText.getText().toString().trim();
-
-                /*Replace whitespace between words with +, like it is specified in Google book API*/
-                bookName = bookName.replace(" ","+");
-
-                /*set empty string to EditText*/
-                bookEditText.setText("");
 
                 /*Clear focus*/
                 InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 mgr.hideSoftInputFromWindow(bookEditText.getWindowToken(), 0);
 
-                /*Create asyncTask and execute*/
-                BookAsyncTask bookAsyncTask = new BookAsyncTask();
-                bookAsyncTask.execute(QUERY_URL + bookName + MAX_RESULTS_PARAMETER);
+                /*Get a reference to the ConnectivityManager to check state of network connectivity*/
+                ConnectivityManager connMgr = (ConnectivityManager)
+                        getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                /* Get details on the currently active default data network*/
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+                /*If there is a connection proceed normally*/
+                if (networkInfo != null && networkInfo.isConnected()) {
+
+                    /*Hide emptyTextView*/
+                    emptyTextView.setText("");
+
+                    /*cleat adapter*/
+                    adapter.clear();
+
+                    /*Show loading indicator*/
+                    loadingIndicator.setVisibility(View.VISIBLE);
+
+                    /*Get book name the user entered and trim leading and trailing whitespace*/
+                    String bookName = bookEditText.getText().toString().trim();
+
+                    /*Replace whitespace between words with +, like it is specified in Google book API*/
+                    bookName = bookName.replace(" ", "+");
+
+                    /*set empty string to EditText*/
+                    bookEditText.setText("");
+
+                    /*Create asyncTask and execute*/
+                    BookAsyncTask bookAsyncTask = new BookAsyncTask();
+                    bookAsyncTask.execute(QUERY_URL + bookName + MAX_RESULTS_PARAMETER);
+                }
+                else{
+                    emptyTextView.setText(R.string.no_connection_message);
+                }
             }
         });
     }
@@ -88,6 +126,10 @@ public class MainActivity extends AppCompatActivity {
 
             /*Clear adapter*/
             adapter.clear();
+
+            /*Hide loading Indicator*/
+            ProgressBar loadingIndicator = (ProgressBar) findViewById(R.id.loading_indicator);
+            loadingIndicator.setVisibility(GONE);
 
             if(books != null && !books.isEmpty()){
                 adapter.addAll(books);
