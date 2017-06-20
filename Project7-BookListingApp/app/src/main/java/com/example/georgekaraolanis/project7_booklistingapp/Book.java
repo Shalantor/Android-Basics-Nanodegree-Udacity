@@ -57,7 +57,6 @@ public class Book implements Parcelable{
         }
     };
 
-
     public ArrayList<String> getAuthors() {
         return authors;
     }

@@ -61,12 +61,8 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
             /*When finished set text in TextView*/
             authorsTextView.setText(authorsText.toString());
-
         }
-
-
 
         return listItemView;
     }
-
 }

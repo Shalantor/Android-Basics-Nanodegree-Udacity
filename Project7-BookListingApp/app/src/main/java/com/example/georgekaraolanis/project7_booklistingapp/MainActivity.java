@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String EDIT_TEXT_INPUT = "Input";
 
     /*Maximum number of items to get from query. In API documentation it is
-      stated that its maximum value is 40, so we will use that.*/
+      stated that its maximum value is 40. We will use 20.*/
     private static final String MAX_RESULTS_PARAMETER = "&maxResults=20";
 
     /*Adapter for ListView*/
@@ -169,8 +169,6 @@ public class MainActivity extends AppCompatActivity {
                 adapter.addAll(books);
             }
         }
-
-
     }
 
     @Override
@@ -184,5 +182,4 @@ public class MainActivity extends AppCompatActivity {
 
         super.onSaveInstanceState(outState);
     }
-
 }

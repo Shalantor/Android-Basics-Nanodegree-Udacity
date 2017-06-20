@@ -4,11 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -123,7 +121,6 @@ public final class QueryUtils {
                 line = reader.readLine();
             }
         }
-
         return output.toString();
     }
 
@@ -204,7 +201,6 @@ public final class QueryUtils {
         catch(IOException ex){
             Log.e(LOG_TAG, "IOException when retrieving Image ", ex);
         }
-
         return bitmap;
     }
 }
