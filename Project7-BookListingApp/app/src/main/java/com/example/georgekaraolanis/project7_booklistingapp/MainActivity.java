@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     /*Adapter for listview*/
     private BookAdapter adapter;
 
+    /*Current book list*/
+    ArrayList<Book> currentList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
         ListView bookListView = (ListView) findViewById(R.id.list);
         adapter = new BookAdapter(this,new ArrayList<Book>());
         bookListView.setAdapter(adapter);
+
+        /*Check if recreated*/
+        if (savedInstanceState != null) {
+            currentList = savedInstanceState.getParcelableArrayList("key");
+            adapter.addAll(currentList);
+        }
 
         /*Empty TextView for ListView*/
         final TextView emptyTextView = (TextView) findViewById(R.id.empty_view);
@@ -144,11 +153,18 @@ public class MainActivity extends AppCompatActivity {
                 emptyTextView.setText(R.string.no_books_found);
             }
             else{
+                currentList = (ArrayList<Book>) books;
                 adapter.addAll(books);
             }
         }
 
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList("key", currentList);
+        super.onSaveInstanceState(outState);
     }
 
 }

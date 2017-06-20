@@ -12,21 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusableInTouchMode="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:paddingTop="@dimen/vertical_padding_search_field"
+        android:paddingRight="@dimen/padding_left_right"
+        android:paddingLeft="@dimen/vertical_padding_list_items">
 
         <EditText
             android:id="@+id/search_field"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="@dimen/text_size"
             android:hint="@string/search_hint"
-            android:layout_weight="2" />
+            android:layout_weight="2"
+            android:paddingRight="@dimen/padding_between_elements_horizontal"/>
 
         <Button
             android:id="@+id/search_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="@dimen/text_size"
             android:text="@string/search"
             android:layout_weight="1"/>
 
@@ -42,11 +46,14 @@
         android:layout_below="@+id/enter_question"/>
 
     <TextView
+        android:textSize="@dimen/text_size"
         android:id="@+id/empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceMedium"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:paddingRight="@dimen/padding_left_right"
+        android:paddingLeft="@dimen/padding_left_right"/>
 
     <ProgressBar
         android:id="@+id/loading_indicator"
