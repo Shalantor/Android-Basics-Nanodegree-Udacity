@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,10 +32,7 @@ public class MainActivity extends AppCompatActivity {
       stated that its maximum value is 40, so we will use that.*/
     private static final String MAX_RESULTS_PARAMETER = "&maxResults=20";
 
-    /*AsyncTask for network operations*/
-    private AsyncTask bookAsyncTask;
-
-    /*Adapter for listview*/
+    /*Adapter for ListView*/
     private BookAdapter adapter;
 
     /*Current book list*/
@@ -49,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         ListView bookListView = (ListView) findViewById(R.id.list);
         adapter = new BookAdapter(this,new ArrayList<Book>());
         bookListView.setAdapter(adapter);
+
+        /*Hide keyboard, as it pops up sometimes on screen rotation*/
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         /*Check if recreated*/
         if (savedInstanceState != null) {
@@ -72,10 +73,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                /*Get EditText*/
                 EditText bookEditText = (EditText) findViewById(R.id.search_field);
 
-                /*Clear focus*/
+                /*Hide keyboard*/
                 InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 mgr.hideSoftInputFromWindow(bookEditText.getWindowToken(), 0);
 

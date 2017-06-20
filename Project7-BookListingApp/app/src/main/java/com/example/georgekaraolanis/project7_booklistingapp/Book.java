@@ -40,7 +40,11 @@ public class Book implements Parcelable{
     public void writeToParcel(Parcel out, int flags) {
         out.writeSerializable(authors);
         out.writeString(title);
-        thumbnail.writeToParcel(out,0);
+
+        /*Thumbnail is null when OnStop is invoked, check that first*/
+        if (thumbnail != null) {
+            thumbnail.writeToParcel(out, 0);
+        }
     }
 
     public static final Parcelable.Creator<Book> CREATOR = new Parcelable.Creator<Book>() {
