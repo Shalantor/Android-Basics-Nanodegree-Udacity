@@ -21,9 +21,14 @@ public class News {
                 String author, String url){
         this.title = title;
         this.section = section;
-        this.date =date;
         this.author = author;
         this.url = url;
+
+        /*Process date data*/
+        date = date.replace("T"," ");
+        date = date.replace("Z"," ");
+        this.date = date.substring(0,date.lastIndexOf(':'));
+
     }
 
     public String getTitle() {
