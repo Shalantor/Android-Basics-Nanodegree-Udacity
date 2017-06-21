@@ -9,7 +9,7 @@ public class News {
     private String section;
 
     /*Date of publication*/
-    private long timeInMilliseconds;
+    private String date;
 
     /*Author of article*/
     private String article;
@@ -17,11 +17,11 @@ public class News {
     /*Url of website with those news*/
     private String url;
 
-    public News(String title, String section, long timeInMilliseconds,
+    public News(String title, String section, String date,
                 String article, String url){
         this.title = title;
         this.section = section;
-        this.timeInMilliseconds = timeInMilliseconds;
+        this.date =date;
         this.article = article;
         this.url = url;
     }
@@ -34,8 +34,8 @@ public class News {
         return section;
     }
 
-    public long getTimeInMilliseconds() {
-        return timeInMilliseconds;
+    public String getDate() {
+        return date;
     }
 
     public String getArticle() {
