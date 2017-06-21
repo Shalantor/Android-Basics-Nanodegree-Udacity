@@ -12,17 +12,17 @@ public class News {
     private String date;
 
     /*Author of article*/
-    private String article;
+    private String author;
 
     /*Url of website with those news*/
     private String url;
 
     public News(String title, String section, String date,
-                String article, String url){
+                String author, String url){
         this.title = title;
         this.section = section;
         this.date =date;
-        this.article = article;
+        this.author = author;
         this.url = url;
     }
 
@@ -38,8 +38,8 @@ public class News {
         return date;
     }
 
-    public String getArticle() {
-        return article;
+    public String getAuthor() {
+        return author;
     }
 
     public String getUrl() {
