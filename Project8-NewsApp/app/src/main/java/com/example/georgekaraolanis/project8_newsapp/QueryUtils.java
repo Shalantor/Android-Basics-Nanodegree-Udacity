@@ -44,7 +44,7 @@ public final class QueryUtils {
         /*Get relevant data from JSONResponse */
         List<News> newsList = getJsonData(jsonResponse);
 
-        return null;
+        return newsList;
     }
 
     /*Create URL object*/

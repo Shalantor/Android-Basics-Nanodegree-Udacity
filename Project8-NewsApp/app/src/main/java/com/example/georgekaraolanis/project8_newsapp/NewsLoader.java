@@ -3,6 +3,7 @@ package com.example.georgekaraolanis.project8_newsapp;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.util.Log;
 
 import java.util.List;
 
