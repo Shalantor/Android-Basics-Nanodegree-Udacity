@@ -125,8 +125,11 @@ public final class QueryUtils {
         try{
             JSONObject jsonNews = new JSONObject(jsonNewsString);
 
+            /*Get response*/
+            JSONObject response = jsonNews.getJSONObject("response");
+
             /*Get results array*/
-            JSONArray results = jsonNews.getJSONArray("results");
+            JSONArray results = response.getJSONArray("results");
 
             /*Get info for each result*/
             for (int i =0; i < results.length(); i++){
@@ -143,8 +146,16 @@ public final class QueryUtils {
                 /*Get tags*/
                 JSONArray tags = newsItem.getJSONArray("tags");
 
-                /*Get author from tags*/
-                String author = tags.getJSONObject(0).getString("webTitle");
+                /*Get author from tags. Some news articles don't have
+                * authors or contributors */
+                JSONObject authorJsonObject = tags.optJSONObject(0);
+                String author;
+                if (authorJsonObject == null){
+                    author = "";
+                }
+                else{
+                    author = authorJsonObject.getString("webTitle");
+                }
 
                 /*Create News item*/
                 News newsObject = new News(title,section,date,author,urlString);

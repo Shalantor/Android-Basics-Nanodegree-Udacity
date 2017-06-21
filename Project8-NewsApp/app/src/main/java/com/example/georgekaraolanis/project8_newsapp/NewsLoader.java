@@ -8,9 +8,6 @@ import java.util.List;
 
 public class NewsLoader extends AsyncTaskLoader<List<News>>{
 
-    /*Tag for logging*/
-    private static final String LOG_TAG = NewsLoader.class.getName();
-
     /*URL to query*/
     private String urlString;
 
