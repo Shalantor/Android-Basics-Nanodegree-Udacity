@@ -28,7 +28,6 @@ public class News {
         date = date.replace("T"," ");
         date = date.replace("Z"," ");
         this.date = date.substring(0,date.lastIndexOf(':'));
-
     }
 
     public String getTitle() {

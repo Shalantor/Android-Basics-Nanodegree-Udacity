@@ -3,11 +3,9 @@ package com.example.georgekaraolanis.project8_newsapp;
 
 import android.text.TextUtils;
 import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,12 +56,11 @@ public final class QueryUtils {
         return url;
     }
 
-
     /*Make http request to given url*/
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
 
-        // If the URL is null, then return early.
+        /* If the URL is null, then return early*/
         if (url == null) {
             return jsonResponse;
         }
@@ -162,14 +159,11 @@ public final class QueryUtils {
 
                 /*Add to list*/
                 newsList.add(newsObject);
-
             }
 
         }catch(JSONException ex){
             Log.e(LOG_TAG, "Problem parsing the news JSON results", ex);
         }
-
         return newsList;
     }
-
 }

@@ -90,9 +90,8 @@ public class NewsActivity extends AppCompatActivity
             loadingIndicator.setVisibility(View.GONE);
 
             /*Show error*/
-            emptyTextView.setText("No net");
+            emptyTextView.setText(R.string.no_connection_message);
         }
-
     }
 
     @Override
@@ -108,7 +107,7 @@ public class NewsActivity extends AppCompatActivity
         loadingIndicator.setVisibility(View.GONE);
 
         /* Display no news found message*/
-        emptyTextView.setText("Now news");
+        emptyTextView.setText(R.string.no_news_found);
 
         /*Clear adapter*/
         adapter.clear();

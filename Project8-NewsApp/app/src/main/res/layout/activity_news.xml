@@ -9,8 +9,10 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp"/>
+        android:divider="@android:color/holo_blue_light"
+        android:dividerHeight="@dimen/divider_width"
+        android:paddingRight="@dimen/padding_horizontal"
+        android:paddingLeft="@dimen/padding_horizontal"/>
 
     <TextView
         android:id="@+id/empty_view"
