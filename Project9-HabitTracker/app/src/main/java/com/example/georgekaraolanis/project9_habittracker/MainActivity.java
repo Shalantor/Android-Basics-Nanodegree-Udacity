@@ -1,6 +1,7 @@
 package com.example.georgekaraolanis.project9_habittracker;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*Insert a habit into the database*/
-    private void insertHabit(String name,String time, int category){
+    private void insertData(String name,String time, int category){
 
         /*Create helper*/
         HabitDbHelper helper = new HabitDbHelper(this);
@@ -47,6 +48,38 @@ public class MainActivity extends AppCompatActivity {
         else{
             Log.d(LOG_TAG,"Value inserted successfully");
         }
+
+    }
+
+    /*Read an entry or entries from database*/
+    private Cursor readData(){
+
+        /*Create helper*/
+        HabitDbHelper helper = new HabitDbHelper(this);
+
+        /*Create and/or read from database*/
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        /*Define projection. Let's say we want all columns*/
+        String[] projection = {
+                HabitContract.HabitEntry._ID,
+                HabitContract.HabitEntry.COLUMN_HABIT_NAME,
+                HabitContract.HabitEntry.COLUMN_HABIT_TIME,
+                HabitContract.HabitEntry.COLUMN_HABIT_CATEGORY
+        };
+
+        /*Perform query*/
+        Cursor cursor = db.query(
+                HabitContract.HabitEntry.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        return cursor;
 
     }
 
