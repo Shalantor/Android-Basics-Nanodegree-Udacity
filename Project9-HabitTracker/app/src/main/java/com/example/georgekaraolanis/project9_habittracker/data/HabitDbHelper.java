@@ -24,8 +24,8 @@ public class HabitDbHelper extends SQLiteOpenHelper{
         /*SQL statement to create table*/
         String SQL_CREATE_HABITS_TABLE = "CREATE TABLE " + HabitEntry.TABLE_NAME + " ("
                 + HabitEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + HabitEntry.COLUMN_HABIT_NAME + " TEXT NOT NULL"
-                + HabitEntry.COLUMN_HABIT_CATEGORY + " INTEGER DEFAULT 4"
+                + HabitEntry.COLUMN_HABIT_NAME + " TEXT NOT NULL, "
+                + HabitEntry.COLUMN_HABIT_CATEGORY + " INTEGER DEFAULT 4, "
                 + HabitEntry.COLUMN_HABIT_TIME + " TEXT);";
 
         /*Execute the statement*/

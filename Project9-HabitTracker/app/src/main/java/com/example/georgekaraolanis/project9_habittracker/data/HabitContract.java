@@ -32,7 +32,7 @@ public final class HabitContract {
         * 4: other*/
         public final static String COLUMN_HABIT_CATEGORY = "category";
 
-        /*Possible values for habit*/
+        /*Possible values for habit, just for reference*/
         private static final int CATEGORY_HOBBY = 0;
         private static final int CATEGORY_MEDICATION = 1;
         private static final int CATEGORY_PET = 2;
