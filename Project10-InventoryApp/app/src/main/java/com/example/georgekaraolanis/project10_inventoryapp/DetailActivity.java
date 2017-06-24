@@ -1,4 +1,6 @@
 package com.example.georgekaraolanis.project10_inventoryapp;
 
-public class DetailActivity {
+import android.support.v7.app.AppCompatActivity;
+
+public class DetailActivity extends AppCompatActivity{
 }
