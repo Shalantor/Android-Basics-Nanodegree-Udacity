@@ -49,7 +49,7 @@ public final class InventoryContract {
 
         /*path of item image*/
         public final static String COLUMN_ITEM_IMAGE = "image_path";
-        
+
     }
 
 }
