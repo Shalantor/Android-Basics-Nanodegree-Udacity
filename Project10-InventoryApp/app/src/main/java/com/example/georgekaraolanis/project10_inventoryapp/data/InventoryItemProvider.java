@@ -246,6 +246,4 @@ public class InventoryItemProvider extends ContentProvider{
         return rowsUpdated;
     }
 
-
-
 }
