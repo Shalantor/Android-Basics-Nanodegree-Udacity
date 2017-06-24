@@ -3,6 +3,8 @@ package com.example.georgekaraolanis.project10_inventoryapp;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,13 +45,16 @@ public class ItemCursorAdapter extends CursorAdapter{
         String itemName = cursor.getString(itemNameColumn);
         String itemQuantity = String.valueOf(cursor.getInt(itemQuantityColumn));
         String itemPrice = String.valueOf(cursor.getFloat(itemPriceColumn));
-        int itemImageId = cursor.getInt(itemImageColumn);
+        String itemImage = cursor.getString(itemImageColumn);
 
         /*update views*/
         itemNameTextView.setText(itemName);
         itemQuantityTextView.setText(itemQuantity);
         itemPriceTextView.setText(itemPrice);
-        itemImageView.setImageResource(itemImageId);
+
+        /*ImageView*/
+        Bitmap bitmap = BitmapFactory.decodeFile(itemImage);
+        itemImageView.setImageBitmap(bitmap);
 
     }
 }
