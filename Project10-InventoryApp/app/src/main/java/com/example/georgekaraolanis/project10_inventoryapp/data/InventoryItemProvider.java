@@ -146,7 +146,34 @@ public class InventoryItemProvider extends ContentProvider{
 
     @Override
     public int delete(Uri uri,String selection,String[] selectionArgs) {
-        return 0;
+
+        /*Get writeable database*/
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+        /*Number of deleted rows*/
+        int rowsDeleted;
+
+        final int match = uriMatcher.match(uri);
+        switch (match) {
+            case ITEMS:
+                rowsDeleted = database.delete(InventoryEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            case ITEM_ID:
+                selection = InventoryEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                rowsDeleted = database.delete(InventoryEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            default:
+                throw new IllegalArgumentException("Can not delete for " + uri);
+        }
+
+        /*Check how many rows got deleted*/
+        if (rowsDeleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        /*Return number of deleted rows*/
+        return rowsDeleted;
     }
 
     @Override
@@ -218,5 +245,7 @@ public class InventoryItemProvider extends ContentProvider{
         /*Return numbers of updated rows*/
         return rowsUpdated;
     }
+
+
 
 }
