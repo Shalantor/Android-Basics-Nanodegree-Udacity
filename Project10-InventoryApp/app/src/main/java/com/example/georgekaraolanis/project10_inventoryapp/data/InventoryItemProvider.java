@@ -7,6 +7,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.util.Log;
 
 import com.example.georgekaraolanis.project10_inventoryapp.data.InventoryContract.InventoryEntry;
 
@@ -77,12 +78,70 @@ public class InventoryItemProvider extends ContentProvider{
 
     @Override
     public String getType(Uri uri) {
-        return null;
+        final int match = uriMatcher.match(uri);
+        switch (match) {
+            case ITEMS:
+                return InventoryEntry.CONTENT_LIST_TYPE;
+            case ITEM_ID:
+                return InventoryEntry.CONTENT_ITEM_TYPE;
+            default:
+                throw new IllegalStateException("Unknown URI " + uri + " with match " + match);
+        }
     }
 
     @Override
     public Uri insert(Uri uri,ContentValues values) {
-        return null;
+        final int match = uriMatcher.match(uri);
+        switch (match) {
+            case ITEMS:
+                return insertItem(uri, values);
+            default:
+                throw new IllegalArgumentException("Insertion is not supported for " + uri);
+        }
+    }
+
+    /*Insert an item into database*/
+    private Uri insertItem(Uri uri, ContentValues values){
+
+        /*Check that the item name is not null*/
+        String name = values.getAsString(InventoryEntry.COLUMN_ITEM_NAME);
+        if (name == null) {
+            throw new IllegalArgumentException("Item requires a name");
+        }
+
+        /*Check that image path is not null*/
+        String imagePath = values.getAsString(InventoryEntry.COLUMN_ITEM_IMAGE);
+        if (imagePath == null) {
+            throw new IllegalArgumentException("Item requires an image");
+        }
+
+        /*Check that quantity is greater than or equal to zero*/
+        Integer quantity = values.getAsInteger(InventoryEntry.COLUMN_ITEM_QUANTITY);
+        if (quantity != null && quantity < 0) {
+            throw new IllegalArgumentException("Item requires a valid quantity");
+        }
+
+        /*Check that price is greater than or equal to zero*/
+        Float price = values.getAsFloat(InventoryEntry.COLUMN_ITEM_PRICE);
+        if (price != null && price < 0) {
+            throw new IllegalArgumentException("Item requires a valid price");
+        }
+
+        /*Get writeable database*/
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+        /*Insert new item with the given values*/
+        long id = database.insert(InventoryEntry.TABLE_NAME,null,values);
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+
+        /*Notify listeners that we have new data*/
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        /*Return uri with the new id*/
+        return ContentUris.withAppendedId(uri, id);
     }
 
     @Override
