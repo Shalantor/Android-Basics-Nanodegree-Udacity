@@ -151,6 +151,72 @@ public class InventoryItemProvider extends ContentProvider{
 
     @Override
     public int update(Uri uri,ContentValues values,String selection,String[] selectionArgs) {
-        return 0;
+        final int match = uriMatcher.match(uri);
+        switch (match) {
+            case ITEMS:
+                return updateItem(uri, values, selection, selectionArgs);
+            case ITEM_ID:
+                selection = InventoryEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                return updateItem(uri, values, selection, selectionArgs);
+            default:
+                throw new IllegalArgumentException("Update is not supported for " + uri);
+        }
     }
+
+    /*Update an item*/
+    private int updateItem(Uri uri, ContentValues values, String selection, String[] selectionArgs){
+
+        /*Check that name is not null*/
+        if (values.containsKey(InventoryEntry.COLUMN_ITEM_NAME)){
+            String name = values.getAsString(InventoryEntry.COLUMN_ITEM_NAME);
+            if (name == null) {
+                throw new IllegalArgumentException("Item requires a name");
+            }
+        }
+
+        /*Check image path*/
+        if (values.containsKey(InventoryEntry.COLUMN_ITEM_IMAGE)){
+            String imagePath = values.getAsString(InventoryEntry.COLUMN_ITEM_IMAGE);
+            if (imagePath == null) {
+                throw new IllegalArgumentException("Item requires an image");
+            }
+        }
+
+        /*Check item quantity*/
+        if (values.containsKey(InventoryEntry.COLUMN_ITEM_QUANTITY)){
+            Integer quantity = values.getAsInteger(InventoryEntry.COLUMN_ITEM_QUANTITY);
+            if (quantity != null && quantity < 0) {
+                throw new IllegalArgumentException("Item requires a valid quantity");
+            }
+        }
+
+        /*Check item price*/
+        if (values.containsKey(InventoryEntry.COLUMN_ITEM_PRICE)){
+            Float price = values.getAsFloat(InventoryEntry.COLUMN_ITEM_PRICE);
+            if (price != null && price < 0) {
+                throw new IllegalArgumentException("Item requires a valid price");
+            }
+        }
+
+        /*If there are no values to update, then don't try to update the database*/
+        if (values.size() == 0) {
+            return 0;
+        }
+
+        /*Else get writeable database*/
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+        /*Perform update*/
+        int rowsUpdated = database.update(InventoryEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        /*Check if necessary to notify listeners*/
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        /*Return numbers of updated rows*/
+        return rowsUpdated;
+    }
+
 }
