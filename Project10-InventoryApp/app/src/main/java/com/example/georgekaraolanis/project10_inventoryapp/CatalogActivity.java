@@ -1,5 +1,6 @@
 package com.example.georgekaraolanis.project10_inventoryapp;
 
+import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -20,9 +21,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.georgekaraolanis.project10_inventoryapp.data.InventoryContract;
+import com.example.georgekaraolanis.project10_inventoryapp.data.InventoryContract.InventoryEntry;
 
 public class CatalogActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor>{
@@ -32,6 +35,12 @@ public class CatalogActivity extends AppCompatActivity implements
 
     /* Adapter for the ListView */
     ItemCursorAdapter adapter;
+
+    /*Path to image*/
+    String imagePath;
+
+    /*View for dialog*/
+    View dialogView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +54,24 @@ public class CatalogActivity extends AppCompatActivity implements
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(CatalogActivity.this);
                 builder.setTitle("Enter a new item");
-                View dialogView = getLayoutInflater().inflate(R.layout.add_item_prompt, null);
+                dialogView = getLayoutInflater().inflate(R.layout.add_item_prompt, null);
                 builder.setView(dialogView);
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        /*EditText fields*/
+                        EditText nameEditText = (EditText) dialogView.findViewById(R.id.name_input);
+                        EditText quantityEditText = (EditText) dialogView.findViewById(R.id.quantity_input);
+                        EditText priceEditText = (EditText) dialogView.findViewById(R.id.price_input);
+
+                        /*Content values*/
+                        ContentValues values = new ContentValues();
+                        values.put(InventoryEntry.COLUMN_ITEM_NAME,nameEditText.getText().toString());
+                        values.put(InventoryEntry.COLUMN_ITEM_QUANTITY,quantityEditText.getText().toString());
+                        values.put(InventoryEntry.COLUMN_ITEM_PRICE,priceEditText.getText().toString());
+                        values.put(InventoryEntry.COLUMN_ITEM_IMAGE,imagePath);
+
+                        Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI,values);
                     }
                 });
                 builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
@@ -132,5 +153,13 @@ public class CatalogActivity extends AppCompatActivity implements
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         adapter.swapCursor(null);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            imagePath = data.getData().toString();
+        }
     }
 }

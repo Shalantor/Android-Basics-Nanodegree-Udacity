@@ -10,7 +10,7 @@ public final class InventoryContract {
     private InventoryContract(){}
 
     /*Name for content provider*/
-    public static final String CONTENT_AUTHORITY = "com.example.android.georgekaraolanis.project10_inventoryapp";
+    public static final String CONTENT_AUTHORITY = "com.example.georgekaraolanis.project10_inventoryapp";
 
     /*The base for the uri apps will use to connect to content provider*/
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
