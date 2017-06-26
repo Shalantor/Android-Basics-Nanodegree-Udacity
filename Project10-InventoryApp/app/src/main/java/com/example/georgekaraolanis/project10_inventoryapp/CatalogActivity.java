@@ -1,5 +1,6 @@
 package com.example.georgekaraolanis.project10_inventoryapp;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.ContentUris;
@@ -8,10 +9,13 @@ import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -42,10 +46,44 @@ public class CatalogActivity extends AppCompatActivity implements
     /*View for dialog*/
     View dialogView;
 
+    /*listView*/
+    ListView listView;
+
+    /*Data of cursor*/
+    Cursor cursorData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
+
+        /*Permissions*/
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_CONTACTS)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        1);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
 
         /*Setup fab button to open detail activity*/
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.detail_view_button);
@@ -102,15 +140,11 @@ public class CatalogActivity extends AppCompatActivity implements
         });
 
         /* Find the ListView*/
-        ListView listView = (ListView) findViewById(R.id.list);
+        listView = (ListView) findViewById(R.id.list);
 
         /* Find and set empty view on the ListView*/
         View emptyView = findViewById(R.id.empty_text_view);
         listView.setEmptyView(emptyView);
-
-        /*Adapter setup*/
-        adapter = new ItemCursorAdapter(this, null);
-        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -147,7 +181,12 @@ public class CatalogActivity extends AppCompatActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        adapter.swapCursor(data);
+        if (adapter != null) {
+            adapter.swapCursor(data);
+        }
+        else{
+            cursorData = data;
+        }
     }
 
     @Override
@@ -160,6 +199,28 @@ public class CatalogActivity extends AppCompatActivity implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             imagePath = data.getData().toString();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    /*Adapter setup*/
+                    adapter = new ItemCursorAdapter(this, null);
+                    listView.setAdapter(adapter);
+
+                    /*Check data*/
+                    if (cursorData != null){
+                        adapter.swapCursor(cursorData);
+                    }
+                } else {
+                }
+            }
         }
     }
 }
