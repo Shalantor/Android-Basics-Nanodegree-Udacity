@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Project10-InventoryApp</string>
     <string name="sale_button_text">Sale</string>
+    <string name="choose_image">Choose Image</string>
 </resources>
