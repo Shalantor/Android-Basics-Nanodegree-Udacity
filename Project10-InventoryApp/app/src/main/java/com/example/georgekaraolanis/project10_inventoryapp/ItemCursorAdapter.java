@@ -35,12 +35,13 @@ public class ItemCursorAdapter extends CursorAdapter{
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
+        Log.d("NEW","HERE");
         return LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-
+        Log.d("OLD","OLDERE");
         /*Get the TextViews and the ImageView*/
         TextView itemNameTextView = (TextView) view.findViewById(R.id.name);
         TextView itemQuantityTextView = (TextView) view.findViewById(R.id.quantity);
@@ -79,6 +80,14 @@ public class ItemCursorAdapter extends CursorAdapter{
         /* Get the dimensions of the View*/
         int targetW = view.getWidth();
         int targetH = view.getHeight();
+
+        if (targetW == 0){
+            targetW = (int) context.getResources().getDimension(R.dimen.image_dimension);
+        }
+
+        if (targetH == 0){
+            targetH = (int) context.getResources().getDimension(R.dimen.image_dimension);
+        }
 
         InputStream input = null;
         try {

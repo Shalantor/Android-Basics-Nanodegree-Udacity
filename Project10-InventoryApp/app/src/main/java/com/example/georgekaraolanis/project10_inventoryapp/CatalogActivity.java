@@ -57,9 +57,6 @@ public class CatalogActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
 
-        /*Adapter setup*/
-        adapter = new ItemCursorAdapter(this, null);
-
         /*Permissions*/
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(this,
@@ -144,6 +141,9 @@ public class CatalogActivity extends AppCompatActivity implements
 
         /* Find the ListView*/
         listView = (ListView) findViewById(R.id.list);
+
+        /*Adapter setup*/
+        adapter = new ItemCursorAdapter(this, null);
         listView.setAdapter(adapter);
 
         /* Find and set empty view on the ListView*/
