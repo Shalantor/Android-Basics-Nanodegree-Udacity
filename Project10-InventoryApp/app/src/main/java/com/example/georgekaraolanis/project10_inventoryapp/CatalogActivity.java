@@ -57,6 +57,9 @@ public class CatalogActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
 
+        /*Adapter setup*/
+        adapter = new ItemCursorAdapter(this, null);
+
         /*Permissions*/
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(this,
@@ -141,6 +144,7 @@ public class CatalogActivity extends AppCompatActivity implements
 
         /* Find the ListView*/
         listView = (ListView) findViewById(R.id.list);
+        listView.setAdapter(adapter);
 
         /* Find and set empty view on the ListView*/
         View emptyView = findViewById(R.id.empty_text_view);
@@ -158,8 +162,6 @@ public class CatalogActivity extends AppCompatActivity implements
                 startActivity(intent);
             }
         });
-        // Kick off the loader
-        getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
     }
 
     @Override
@@ -181,12 +183,7 @@ public class CatalogActivity extends AppCompatActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (adapter != null) {
             adapter.swapCursor(data);
-        }
-        else{
-            cursorData = data;
-        }
     }
 
     @Override
@@ -210,14 +207,8 @@ public class CatalogActivity extends AppCompatActivity implements
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    /*Adapter setup*/
-                    adapter = new ItemCursorAdapter(this, null);
-                    listView.setAdapter(adapter);
-
-                    /*Check data*/
-                    if (cursorData != null){
-                        adapter.swapCursor(cursorData);
-                    }
+                    // Kick off the loader
+                    getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
                 } else {
                 }
             }
