@@ -46,7 +46,7 @@ public class CatalogActivity extends AppCompatActivity implements
                 AlertDialog.Builder builder = new AlertDialog.Builder(CatalogActivity.this);
                 builder.setTitle("Enter a new item");
                 View dialogView = getLayoutInflater().inflate(R.layout.add_item_prompt, null);
-                builder.setView(R.layout.add_item_prompt);
+                builder.setView(dialogView);
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
