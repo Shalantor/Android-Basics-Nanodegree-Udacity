@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.georgekaraolanis.project10_inventoryapp.data.InventoryContract;
 import com.example.georgekaraolanis.project10_inventoryapp.data.InventoryContract.InventoryEntry;
@@ -109,7 +110,12 @@ public class CatalogActivity extends AppCompatActivity implements
                         values.put(InventoryEntry.COLUMN_ITEM_PRICE,priceEditText.getText().toString());
                         values.put(InventoryEntry.COLUMN_ITEM_IMAGE,imagePath);
 
-                        Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI,values);
+                        try {
+                            Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
+                        }
+                        catch (IllegalArgumentException ex){
+                            Toast.makeText(CatalogActivity.this, ex.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
