@@ -1,6 +1,8 @@
 package com.example.georgekaraolanis.project10_inventoryapp;
 
 
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -10,9 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.georgekaraolanis.project10_inventoryapp.data.InventoryContract.InventoryEntry;
 
@@ -35,13 +39,11 @@ public class ItemCursorAdapter extends CursorAdapter{
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        Log.d("NEW","HERE");
         return LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-        Log.d("OLD","OLDERE");
+    public void bindView(final View view, final Context context,Cursor cursor) {
         /*Get the TextViews and the ImageView*/
         TextView itemNameTextView = (TextView) view.findViewById(R.id.name);
         TextView itemQuantityTextView = (TextView) view.findViewById(R.id.quantity);
@@ -65,11 +67,46 @@ public class ItemCursorAdapter extends CursorAdapter{
         itemQuantityTextView.setText(itemQuantity);
         itemPriceTextView.setText(itemPrice);
 
-        /*https://github.com/crlsndrsjmnz/MyShareImageExample/blob/master/app/src/main/java/co/carlosandresjimenez/android/myshareimageexample/MainActivity.java*/
-        /*TODO:CHECK ABOVE LINK FOR STORING IMAGE FROM GALLERY*/
         /*ImageView*/
         itemImageView.setImageBitmap(getBitmapFromUri(Uri.parse(itemImage),itemImageView));
 
+        /*Get button and add a click listener*/
+        Button saleButton = (Button) view.findViewById(R.id.sale_button);
+
+        /*Get id of item*/
+        int itemIdColumn = cursor.getColumnIndex(InventoryEntry._ID);
+        final long id = cursor.getLong(itemIdColumn);
+
+        saleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /*Get quantity*/
+                TextView itemQuantityTextView = (TextView) view.findViewById(R.id.quantity);
+                int quantity = Integer.parseInt( itemQuantityTextView.getText().toString() );
+
+                /*Values items*/
+                ContentValues values = new ContentValues();
+                values.put(InventoryEntry.COLUMN_ITEM_QUANTITY,quantity-1 + "");
+
+                Uri itemUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
+
+                int rowsAffected = context.getContentResolver().update(itemUri,values,null,null);
+
+                Log.d("QUANTITY",(quantity - 1) +"");
+
+                // Show a toast message depending on whether or not the update was successful.
+                if (rowsAffected == 0) {
+                    // If no rows were affected, then there was an error with the update.
+                    Toast.makeText(context, "Error updating item",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    String quantityString = (quantity - 1) + "";
+                    itemQuantityTextView.setText(quantityString);
+                }
+
+            }
+        });
     }
 
     public Bitmap getBitmapFromUri(Uri uri,ImageView view) {
