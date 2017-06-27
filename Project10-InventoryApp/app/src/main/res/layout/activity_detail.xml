@@ -23,7 +23,8 @@
         <Button
             android:id="@+id/minus_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Plus"/>
 
         <TextView
             android:id="@+id/item_quantity"
@@ -34,7 +35,8 @@
         <Button
             android:id="@+id/plus_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Minus"/>
 
 
     </LinearLayout>
@@ -49,13 +51,15 @@
         android:id="@+id/order_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size"/>
+        android:textSize="@dimen/text_size"
+        android:text="Order"/>
 
     <Button
         android:id="@+id/delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size"/>
+        android:textSize="@dimen/text_size"
+        android:text="Delete"/>
 
 
 </LinearLayout>
