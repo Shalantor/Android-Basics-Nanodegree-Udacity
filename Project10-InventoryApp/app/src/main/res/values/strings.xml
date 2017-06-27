@@ -2,4 +2,8 @@
     <string name="app_name">Project10-InventoryApp</string>
     <string name="sale_button_text">Sale</string>
     <string name="choose_image">Choose Image</string>
+    <string name="name_prompt">Enter the item\'s name</string>
+    <string name="quantity_prompt">Enter quantity</string>
+    <string name="price_prompt">Enter price</string>
+    <string name="image_prompt">Choose an image</string>
 </resources>

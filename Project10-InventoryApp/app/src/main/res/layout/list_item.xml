@@ -3,10 +3,11 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/vertical_padding_list_items"
-    android:paddingBottom="@dimen/vertical_padding_list_items"
+    android:paddingTop="@dimen/vertical_padding"
+    android:paddingBottom="@dimen/vertical_padding"
     android:descendantFocusability="blocksDescendants"
-    android:background="@android:color/holo_blue_light">
+    android:background="@android:color/holo_blue_light"
+    android:gravity="center_vertical">
 
     <ImageView
         android:id="@+id/thumbnail"
@@ -16,36 +17,44 @@
         android:paddingLeft="@dimen/padding_left_right"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="2"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left_right"
+        android:paddingRight="@dimen/padding_left_right">
 
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size"
-            android:paddingBottom="@dimen/vertical_padding_list_items"/>
+            android:paddingBottom="@dimen/vertical_padding"/>
 
         <TextView
             android:id="@+id/quantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/text_size"
+            android:paddingBottom="@dimen/vertical_padding"/>
 
         <TextView
             android:id="@+id/price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/text_size"
+            android:paddingBottom="@dimen/vertical_padding"/>
 
     </LinearLayout>
 
     <Button
         android:id="@+id/sale_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size"
-        android:text="@string/sale_button_text"/>
+        android:text="@string/sale_button_text"
+        android:layout_marginLeft="@dimen/padding_left_right"
+        android:layout_marginRight="@dimen/padding_left_right" />
 
 </LinearLayout>

@@ -2,7 +2,7 @@
 <resources>
     <dimen name="vertical_padding_search_field">16dp</dimen>
     <dimen name="text_size">14sp</dimen>
-    <dimen name="vertical_padding_list_items">8dp</dimen>
+    <dimen name="vertical_padding">8dp</dimen>
     <dimen name="padding_left_right">16dp</dimen>
     <dimen name="image_dimension">80dp</dimen>
     <dimen name="padding_between_elements_horizontal">4dp</dimen>
