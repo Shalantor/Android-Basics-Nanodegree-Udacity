@@ -6,4 +6,6 @@
     <string name="quantity_prompt">Enter quantity</string>
     <string name="price_prompt">Enter price</string>
     <string name="image_prompt">Choose an image</string>
+    <string name="available"> available</string>
+    <string name="currency"> $</string>
 </resources>
