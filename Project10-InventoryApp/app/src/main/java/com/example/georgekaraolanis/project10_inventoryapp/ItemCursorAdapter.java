@@ -91,16 +91,16 @@ public class ItemCursorAdapter extends CursorAdapter{
 
                 Uri itemUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
 
-                int rowsAffected = context.getContentResolver().update(itemUri,values,null,null);
-
-                Log.d("QUANTITY",(quantity - 1) +"");
-
-                // Show a toast message depending on whether or not the update was successful.
-                if (rowsAffected == 0) {
-                    // If no rows were affected, then there was an error with the update.
-                    Toast.makeText(context, "Error updating item",
+                int rowsAffected = 0;
+                try {
+                    rowsAffected = context.getContentResolver().update(itemUri, values, null, null);
+                }
+                catch(IllegalArgumentException ex){
+                    Toast.makeText(context, ex.getMessage(),
                             Toast.LENGTH_SHORT).show();
-                } else {
+                }
+
+                if (rowsAffected != 0) {
                     String quantityString = (quantity - 1) + "";
                     itemQuantityTextView.setText(quantityString);
                 }
