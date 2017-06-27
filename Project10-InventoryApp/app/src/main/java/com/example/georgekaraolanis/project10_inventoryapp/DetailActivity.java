@@ -144,6 +144,22 @@ public class DetailActivity extends AppCompatActivity implements
             }
         });
 
+        /*Listener for order button*/
+        Button orderButton = (Button) findViewById(R.id.order_button);
+        orderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Get values from textviews */
+                String name = itemNameTextView.getText().toString();
+
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Order " + name);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hello we need more of this item");
+                startActivity(Intent.createChooser(intent, "Send Email"));
+            }
+        });
+
     }
 
     @Override
