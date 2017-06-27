@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.app.LoaderManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class DetailActivity extends AppCompatActivity implements
     /*Views in layout*/
     ImageView itemImageView;
     TextView itemNameTextView;
-    TextView itemQuantityTextView;
+    EditText itemQuantityEditText;
     TextView itemPriceTextView;
 
     @Override
@@ -52,7 +53,7 @@ public class DetailActivity extends AppCompatActivity implements
         /*references to views*/
         itemImageView = (ImageView) findViewById(R.id.item_image);
         itemNameTextView = (TextView) findViewById(R.id.item_name);
-        itemQuantityTextView = (TextView) findViewById(R.id.item_quantity);
+        itemQuantityEditText= (EditText) findViewById(R.id.item_quantity);
         itemPriceTextView = (TextView) findViewById(R.id.item_price);
     }
 
@@ -98,7 +99,7 @@ public class DetailActivity extends AppCompatActivity implements
 
             // Update the views on the screen with the values from the database
             itemNameTextView.setText(name);
-            itemQuantityTextView.setText(quantity.toString());
+            itemQuantityEditText.setText(quantity.toString());
             itemPriceTextView.setText(price.toString());
 
             Bitmap bitmap = getBitmapFromUri(Uri.parse(imageUriString),itemImageView);
@@ -111,7 +112,7 @@ public class DetailActivity extends AppCompatActivity implements
     public void onLoaderReset(Loader<Cursor> loader) {
         // If the loader is invalidated, clear out all the data from the input fields.
         itemNameTextView.setText("");
-        itemQuantityTextView.setText("");
+        itemQuantityEditText.setText("");
         itemPriceTextView.setText("");
         itemImageView.setImageBitmap(null);
     }
