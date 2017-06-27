@@ -51,5 +51,4 @@ public final class InventoryContract {
         public final static String COLUMN_ITEM_IMAGE = "image_path";
 
     }
-
 }

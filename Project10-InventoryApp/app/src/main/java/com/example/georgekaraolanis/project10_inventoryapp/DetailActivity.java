@@ -207,7 +207,7 @@ public class DetailActivity extends AppCompatActivity implements
             itemQuantityEditText.setText(quantity.toString());
             itemPriceTextView.setText(price.toString());
 
-            Bitmap bitmap = getBitmapFromUri(Uri.parse(imageUriString),itemImageView);
+            Bitmap bitmap = Utils.getBitmapFromUri(Uri.parse(imageUriString),itemImageView,this);
             itemImageView.setImageBitmap(bitmap);
         }
 
@@ -220,66 +220,6 @@ public class DetailActivity extends AppCompatActivity implements
         itemQuantityEditText.setText("");
         itemPriceTextView.setText("");
         itemImageView.setImageBitmap(null);
-    }
-
-
-
-    public Bitmap getBitmapFromUri(Uri uri, ImageView view) {
-
-        if (uri == null || uri.toString().isEmpty())
-            return null;
-
-        /* Get the dimensions of the View*/
-        int targetW = view.getWidth();
-        int targetH = view.getHeight();
-
-        if (targetW == 0){
-            targetW = (int) getResources().getDimension(R.dimen.image_dimension);
-        }
-
-        if (targetH == 0){
-            targetH = (int) getResources().getDimension(R.dimen.image_dimension);
-        }
-
-        InputStream input = null;
-        try {
-            input =  getContentResolver().openInputStream(uri);
-
-            // Get the dimensions of the bitmap
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            bmOptions.inJustDecodeBounds = true;
-            BitmapFactory.decodeStream(input, null, bmOptions);
-            input.close();
-
-            int photoW = bmOptions.outWidth;
-            int photoH = bmOptions.outHeight;
-
-            // Determine how much to scale down the image
-            int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
-
-            // Decode the image file into a Bitmap sized to fill the View
-            bmOptions.inJustDecodeBounds = false;
-            bmOptions.inSampleSize = scaleFactor;
-            //bmOptions.inPurgeable = true;
-
-            input = getContentResolver().openInputStream(uri);
-            Bitmap bitmap = BitmapFactory.decodeStream(input, null, bmOptions);
-            input.close();
-            return bitmap;
-
-        } catch (FileNotFoundException fne) {
-            Log.e(LOG_TAG, "Failed to load image.", fne);
-            return null;
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "Failed to load image.", e);
-            return null;
-        } finally {
-            try {
-                input.close();
-            } catch (IOException ex) {
-
-            }
-        }
     }
 
     private void deleteItem() {
