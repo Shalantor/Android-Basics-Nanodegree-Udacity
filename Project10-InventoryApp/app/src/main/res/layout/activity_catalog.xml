@@ -24,7 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/fab_button_padding"
+        android:layout_marginBottom="@dimen/fab_button_padding" />
 
 
 </RelativeLayout>

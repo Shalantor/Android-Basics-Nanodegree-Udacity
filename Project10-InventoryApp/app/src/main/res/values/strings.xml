@@ -8,4 +8,7 @@
     <string name="image_prompt">Choose an image</string>
     <string name="available"> available</string>
     <string name="currency"> $</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="quantity">Quantity: </string>
 </resources>
