@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +15,7 @@ public class Utils {
     /*tag for logging*/
     private static final String LOG_TAG = Utils.class.getSimpleName();
 
+    /*Get a bitmap from an uri*/
     public static Bitmap getBitmapFromUri(Uri uri, ImageView view, Context context) {
 
         if (uri == null || uri.toString().isEmpty())
@@ -37,7 +37,7 @@ public class Utils {
         try {
             input =  context.getContentResolver().openInputStream(uri);
 
-            // Get the dimensions of the bitmap
+            /* Get the dimensions of the bitmap*/
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             bmOptions.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(input, null, bmOptions);
@@ -46,13 +46,12 @@ public class Utils {
             int photoW = bmOptions.outWidth;
             int photoH = bmOptions.outHeight;
 
-            // Determine how much to scale down the image
+            /* Determine how much to scale down the image*/
             int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
 
-            // Decode the image file into a Bitmap sized to fill the View
+            /* Decode the image file into a Bitmap sized to fill the View*/
             bmOptions.inJustDecodeBounds = false;
             bmOptions.inSampleSize = scaleFactor;
-            //bmOptions.inPurgeable = true;
 
             input = context.getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(input, null, bmOptions);
@@ -62,14 +61,14 @@ public class Utils {
         } catch (FileNotFoundException fne) {
             Log.e(LOG_TAG, "Failed to load image.", fne);
             return null;
-        } catch (Exception e) {
+        } catch (IOException e) {
             Log.e(LOG_TAG, "Failed to load image.", e);
             return null;
         } finally {
             try {
                 input.close();
             } catch (IOException ex) {
-
+                Log.e(LOG_TAG, "Failed to close stream", ex);
             }
         }
     }

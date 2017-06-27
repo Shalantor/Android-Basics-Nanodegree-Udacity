@@ -75,6 +75,7 @@ public class ItemCursorAdapter extends CursorAdapter{
         int itemIdColumn = cursor.getColumnIndex(InventoryEntry._ID);
         final long id = cursor.getLong(itemIdColumn);
 
+        /*Add listener to button*/
         saleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

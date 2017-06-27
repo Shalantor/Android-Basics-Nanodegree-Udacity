@@ -22,15 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.georgekaraolanis.project10_inventoryapp.data.InventoryContract;
 import com.example.georgekaraolanis.project10_inventoryapp.data.InventoryContract.InventoryEntry;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-
-import static com.example.georgekaraolanis.project10_inventoryapp.data.InventoryDbHelper.LOG_TAG;
 
 public class DetailActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor>{
@@ -78,9 +70,8 @@ public class DetailActivity extends AppCompatActivity implements
                 ContentValues values = new ContentValues();
                 values.put(InventoryEntry.COLUMN_ITEM_QUANTITY,(quantity-1) + "");
 
-                int rowsAffected = 0;
                 try {
-                    rowsAffected = getContentResolver().update(currentUri, values, null, null);
+                    int rowsAffected = getContentResolver().update(currentUri, values, null, null);
                 }
                 catch(IllegalArgumentException ex){
                     Toast.makeText(DetailActivity.this, ex.getMessage(),
@@ -89,7 +80,6 @@ public class DetailActivity extends AppCompatActivity implements
 
             }
         });
-
 
         plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,9 +91,8 @@ public class DetailActivity extends AppCompatActivity implements
                 ContentValues values = new ContentValues();
                 values.put(InventoryEntry.COLUMN_ITEM_QUANTITY,(quantity+1) + "");
 
-                int rowsAffected = 0;
                 try {
-                    rowsAffected = getContentResolver().update(currentUri, values, null, null);
+                    int rowsAffected = getContentResolver().update(currentUri, values, null, null);
                 }
                 catch(IllegalArgumentException ex){
                     Toast.makeText(DetailActivity.this, ex.getMessage(),
@@ -118,27 +107,26 @@ public class DetailActivity extends AppCompatActivity implements
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create an AlertDialog.Builder and set the message, and click listeners
-                // for the postivie and negative buttons on the dialog.
+
+                /*Alert dialog*/
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
                 builder.setMessage("Delete item?");
                 builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // User clicked the "Delete" button, so delete the pet.
+                        /*Delete item*/
                         deleteItem();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // User clicked the "Cancel" button, so dismiss the dialog
-                        // and continue editing the pet.
+                        /*Cancel deletion*/
                         if (dialog != null) {
                             dialog.dismiss();
                         }
                     }
                 });
 
-                // Create and show the AlertDialog
+                /*Show dialog*/
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
             }
@@ -152,6 +140,7 @@ public class DetailActivity extends AppCompatActivity implements
                 /*Get values from textviews */
                 String name = itemNameTextView.getText().toString();
 
+                /*send intent for email*/
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Order " + name);
@@ -164,8 +153,8 @@ public class DetailActivity extends AppCompatActivity implements
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        // Since the editor shows all pet attributes, define a projection that contains
-        // all columns from the pet table
+
+        /*Projection*/
         String[] projection = {
                 InventoryEntry._ID,
                 InventoryEntry.COLUMN_ITEM_NAME,
@@ -173,36 +162,31 @@ public class DetailActivity extends AppCompatActivity implements
                 InventoryEntry.COLUMN_ITEM_PRICE,
                 InventoryEntry.COLUMN_ITEM_IMAGE };
 
-        // This loader will execute the ContentProvider's query method on a background thread
-        return new CursorLoader(this,   // Parent activity context
-                currentUri,         // Query the content URI for the current pet
-                projection,             // Columns to include in the resulting Cursor
-                null,                   // No selection clause
-                null,                   // No selection arguments
-                null);                  // Default sort order
+        return new CursorLoader(this, currentUri, projection, null, null, null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        // Bail early if the cursor is null or there is less than 1 row in the cursor
+
+        /*If cursor null or no items return*/
         if (cursor == null || cursor.getCount() < 1) {
             return;
         }
 
         if (cursor.moveToFirst()) {
-            // Find the columns of pet attributes that we're interested in
+            /*get columns */
             int nameColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_ITEM_NAME);
             int quantityColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_ITEM_QUANTITY);
             int priceColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_ITEM_PRICE);
             int imageColumnIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_ITEM_IMAGE);
 
-            // Extract out the value from the Cursor for the given column index
+            /*get values*/
             String name = cursor.getString(nameColumnIndex);
             Integer quantity = cursor.getInt(quantityColumnIndex);
             Float price = cursor.getFloat(priceColumnIndex);
             String imageUriString = cursor.getString(imageColumnIndex);
 
-            // Update the views on the screen with the values from the database
+            /* Update the views on the screen with the values from the database*/
             itemNameTextView.setText(name);
             itemQuantityEditText.setText(quantity.toString());
             itemPriceTextView.setText(price.toString());
@@ -215,34 +199,30 @@ public class DetailActivity extends AppCompatActivity implements
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        // If the loader is invalidated, clear out all the data from the input fields.
+        /* clear data*/
         itemNameTextView.setText("");
         itemQuantityEditText.setText("");
         itemPriceTextView.setText("");
         itemImageView.setImageBitmap(null);
     }
 
+    /*Delete an item from database*/
     private void deleteItem() {
-        // Only perform the delete if this is an existing pet.
         if (currentUri != null) {
-            // Call the ContentResolver to delete the pet at the given content URI.
-            // Pass in null for the selection and selection args because the mCurrentPetUri
-            // content URI already identifies the pet that we want.
+            /*Delete*/
             int rowsDeleted = getContentResolver().delete(currentUri, null, null);
 
-            // Show a toast message depending on whether or not the delete was successful.
+            /*Check result*/
             if (rowsDeleted == 0) {
-                // If no rows were deleted, then there was an error with the delete.
                 Toast.makeText(this, "Couldn't delete Item",
                         Toast.LENGTH_SHORT).show();
             } else {
-                // Otherwise, the delete was successful and we can display a toast.
                 Toast.makeText(this,"Item deleted",
                         Toast.LENGTH_SHORT).show();
             }
         }
 
-        // Close the activity
+        /*Close activity*/
         finish();
     }
 }
