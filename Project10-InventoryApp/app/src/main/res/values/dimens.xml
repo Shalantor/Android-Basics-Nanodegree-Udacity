@@ -8,4 +8,9 @@
     <dimen name="padding_between_elements_horizontal">4dp</dimen>
     <dimen name="fab_button_padding">16dp</dimen>
     <dimen name="plus_minus_button_padding">40dp</dimen>
+    <dimen name="text_size_details">20sp</dimen>
+    <dimen name="image_size_details">120dp</dimen>
+    <dimen name="text_size_details_name">25sp</dimen>
+    <dimen name="margin_top_buttons_detail">32dp</dimen>
+    <dimen name="image_size_add_item">100dp</dimen>
 </resources>

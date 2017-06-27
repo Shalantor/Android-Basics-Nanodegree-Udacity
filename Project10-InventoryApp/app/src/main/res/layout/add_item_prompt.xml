@@ -7,8 +7,8 @@
     <ImageView
         android:contentDescription="@string/image_prompt"
         android:id="@+id/chosen_image"
-        android:layout_width="@dimen/image_dimension"
-        android:layout_height="@dimen/image_dimension"
+        android:layout_width="@dimen/image_size_add_item"
+        android:layout_height="@dimen/image_size_add_item"
         android:paddingTop="@dimen/vertical_padding"
         android:paddingLeft="@dimen/padding_left_right"
         android:paddingRight="@dimen/padding_left_right"/>
