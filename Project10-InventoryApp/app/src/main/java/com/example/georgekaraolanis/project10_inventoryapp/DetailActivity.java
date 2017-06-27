@@ -1,5 +1,7 @@
 package com.example.georgekaraolanis.project10_inventoryapp;
 
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -9,11 +11,15 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.LoaderManager;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.georgekaraolanis.project10_inventoryapp.data.InventoryContract;
 import com.example.georgekaraolanis.project10_inventoryapp.data.InventoryContract.InventoryEntry;
@@ -55,6 +61,55 @@ public class DetailActivity extends AppCompatActivity implements
         itemNameTextView = (TextView) findViewById(R.id.item_name);
         itemQuantityEditText= (EditText) findViewById(R.id.item_quantity);
         itemPriceTextView = (TextView) findViewById(R.id.item_price);
+
+        /*Click listeners to plus minus buttons*/
+        Button minusButton = (Button) findViewById(R.id.minus_button);
+        Button plusButton = (Button) findViewById(R.id.plus_button);
+
+        minusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int quantity = Integer.parseInt (itemQuantityEditText.getText().toString());
+
+                /*Values items*/
+                ContentValues values = new ContentValues();
+                values.put(InventoryEntry.COLUMN_ITEM_QUANTITY,(quantity-1) + "");
+
+                int rowsAffected = 0;
+                try {
+                    rowsAffected = getContentResolver().update(currentUri, values, null, null);
+                }
+                catch(IllegalArgumentException ex){
+                    Toast.makeText(DetailActivity.this, ex.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
+        plusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int quantity = Integer.parseInt (itemQuantityEditText.getText().toString());
+
+                /*Values items*/
+                ContentValues values = new ContentValues();
+                values.put(InventoryEntry.COLUMN_ITEM_QUANTITY,(quantity+1) + "");
+
+                int rowsAffected = 0;
+                try {
+                    rowsAffected = getContentResolver().update(currentUri, values, null, null);
+                }
+                catch(IllegalArgumentException ex){
+                    Toast.makeText(DetailActivity.this, ex.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
     }
 
     @Override

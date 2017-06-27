@@ -24,7 +24,7 @@
             android:id="@+id/minus_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Plus"
+            android:text="Minus"
             android:layout_weight="1"/>
 
         <EditText
@@ -38,7 +38,7 @@
             android:id="@+id/plus_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Minus"
+            android:text="Plus"
             android:layout_weight="1"/>
 
 
