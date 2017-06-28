@@ -19,6 +19,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -67,12 +68,11 @@ public class CatalogActivity extends AppCompatActivity implements
         /*Permissions*/
         /*Check if running android 6.0 or newer*/
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
-            }
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,}, PERMISSION_REQUEST_CODE);
+        }
+        else{
+            getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
         }
 
         /*Setup fab button to open detail activity*/
@@ -124,10 +124,8 @@ public class CatalogActivity extends AppCompatActivity implements
                 chooseButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent();
-                        intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(Intent.createChooser(intent, "Select picture"),IMAGE_REQUEST_CODE);
+                        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, IMAGE_REQUEST_CODE);
                     }
                 });
 

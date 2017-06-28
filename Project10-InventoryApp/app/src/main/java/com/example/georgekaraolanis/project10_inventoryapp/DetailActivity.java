@@ -16,6 +16,7 @@ import android.app.LoaderManager;
 import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -224,5 +225,18 @@ public class DetailActivity extends AppCompatActivity implements
 
         /*Close activity*/
         finish();
+    }
+
+    /*make up button behave like back button. Images show faster and app doesn't crash
+    * on some devices that way.*/
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return(super.onOptionsItemSelected(item));
     }
 }
