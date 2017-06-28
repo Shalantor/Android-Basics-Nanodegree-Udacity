@@ -117,6 +117,7 @@ public class InventoryItemProvider extends ContentProvider{
 
         /*Check that quantity is greater than or equal to zero*/
         Integer quantity = values.getAsInteger(InventoryEntry.COLUMN_ITEM_QUANTITY);
+        Log.d("SPITI",quantity + "");
         if (quantity != null && quantity < 0) {
             throw new IllegalArgumentException("Item requires a valid quantity");
         }
