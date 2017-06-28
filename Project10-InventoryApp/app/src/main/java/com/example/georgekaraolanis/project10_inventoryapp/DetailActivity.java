@@ -33,7 +33,7 @@ public class DetailActivity extends AppCompatActivity implements
     /*Views in layout*/
     ImageView itemImageView;
     TextView itemNameTextView;
-    EditText itemQuantityEditText;
+    TextView itemQuantityTextView;
     TextView itemPriceTextView;
 
     @Override
@@ -50,7 +50,7 @@ public class DetailActivity extends AppCompatActivity implements
         /*references to views*/
         itemImageView = (ImageView) findViewById(R.id.item_image);
         itemNameTextView = (TextView) findViewById(R.id.item_name);
-        itemQuantityEditText= (EditText) findViewById(R.id.item_quantity);
+        itemQuantityTextView = (TextView) findViewById(R.id.item_quantity);
         itemPriceTextView = (TextView) findViewById(R.id.item_price);
 
         /*Click listeners to plus minus buttons*/
@@ -61,7 +61,7 @@ public class DetailActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                int quantity = Integer.parseInt (itemQuantityEditText.getText().toString());
+                int quantity = Integer.parseInt (itemQuantityTextView.getText().toString());
 
                 /*Values items*/
                 ContentValues values = new ContentValues();
@@ -82,7 +82,7 @@ public class DetailActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                int quantity = Integer.parseInt (itemQuantityEditText.getText().toString());
+                int quantity = Integer.parseInt (itemQuantityTextView.getText().toString());
 
                 /*Values items*/
                 ContentValues values = new ContentValues();
@@ -185,7 +185,7 @@ public class DetailActivity extends AppCompatActivity implements
 
             /* Update the views on the screen with the values from the database*/
             itemNameTextView.setText(name);
-            itemQuantityEditText.setText(quantity.toString());
+            itemQuantityTextView.setText(quantity.toString());
             itemPriceTextView.setText(price.toString());
 
             Bitmap bitmap = Utils.getBitmapFromUri(Uri.parse(imageUriString),itemImageView,this);
@@ -198,7 +198,7 @@ public class DetailActivity extends AppCompatActivity implements
     public void onLoaderReset(Loader<Cursor> loader) {
         /* clear data*/
         itemNameTextView.setText("");
-        itemQuantityEditText.setText("");
+        itemQuantityTextView.setText("");
         itemPriceTextView.setText("");
         itemImageView.setImageBitmap(null);
     }
