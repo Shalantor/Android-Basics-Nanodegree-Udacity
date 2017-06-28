@@ -117,14 +117,13 @@ public class InventoryItemProvider extends ContentProvider{
 
         /*Check that quantity is greater than or equal to zero*/
         Integer quantity = values.getAsInteger(InventoryEntry.COLUMN_ITEM_QUANTITY);
-        Log.d("SPITI",quantity + "");
-        if (quantity != null && quantity < 0) {
+        if ((quantity != null && quantity < 0) || quantity == null) {
             throw new IllegalArgumentException("Item requires a valid quantity");
         }
 
         /*Check that price is greater than or equal to zero*/
         Float price = values.getAsFloat(InventoryEntry.COLUMN_ITEM_PRICE);
-        if (price != null && price < 0) {
+        if ((price != null && price < 0) || price == null) {
             throw new IllegalArgumentException("Item requires a valid price");
         }
 
@@ -214,7 +213,7 @@ public class InventoryItemProvider extends ContentProvider{
         /*Check item quantity*/
         if (values.containsKey(InventoryEntry.COLUMN_ITEM_QUANTITY)){
             Integer quantity = values.getAsInteger(InventoryEntry.COLUMN_ITEM_QUANTITY);
-            if (quantity != null && quantity < 0) {
+            if ((quantity != null && quantity < 0) || quantity == null) {
                 throw new IllegalArgumentException("Item requires a valid quantity");
             }
         }
@@ -222,7 +221,7 @@ public class InventoryItemProvider extends ContentProvider{
         /*Check item price*/
         if (values.containsKey(InventoryEntry.COLUMN_ITEM_PRICE)){
             Float price = values.getAsFloat(InventoryEntry.COLUMN_ITEM_PRICE);
-            if (price != null && price < 0) {
+            if ((price != null && price < 0) || price == null ) {
                 throw new IllegalArgumentException("Item requires a valid price");
             }
         }
