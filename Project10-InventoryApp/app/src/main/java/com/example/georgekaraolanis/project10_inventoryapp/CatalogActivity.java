@@ -16,10 +16,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -67,9 +65,9 @@ public class CatalogActivity extends AppCompatActivity implements
 
         /*Permissions*/
         /*Check if running android 6.0 or newer*/
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && savedInstanceState == null) {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,}, PERMISSION_REQUEST_CODE);
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,}, PERMISSION_REQUEST_CODE);
         }
         else{
             getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
