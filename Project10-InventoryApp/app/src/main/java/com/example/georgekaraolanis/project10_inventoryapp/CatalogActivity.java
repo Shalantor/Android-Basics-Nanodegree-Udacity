@@ -12,6 +12,7 @@ import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -52,36 +53,25 @@ public class CatalogActivity extends AppCompatActivity implements
     /*ImageView for chosen image*/
     ImageView chosenImageView;
 
+    /*Code for permission request*/
+    private static final int PERMISSION_REQUEST_CODE = 1;
+
+    /*Code for image pick*/
+    private static final int IMAGE_REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
 
         /*Permissions*/
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_CONTACTS)
-                != PackageManager.PERMISSION_GRANTED) {
+        /*Check if running android 6.0 or newer*/
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
 
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_CONTACTS)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-            } else {
-
-                // No explanation needed, we can request the permission.
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        1);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
             }
         }
 
@@ -137,7 +127,7 @@ public class CatalogActivity extends AppCompatActivity implements
                         Intent intent = new Intent();
                         intent.setType("image/*");
                         intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(Intent.createChooser(intent, "Select picture"),1);
+                        startActivityForResult(Intent.createChooser(intent, "Select picture"),IMAGE_REQUEST_CODE);
                     }
                 });
 
@@ -197,26 +187,28 @@ public class CatalogActivity extends AppCompatActivity implements
         adapter.swapCursor(null);
     }
 
+    /*Result of image picker*/
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             imagePath = data.getData().toString();
             chosenImageView.setImageBitmap(Utils.getBitmapFromUri(data.getData(),chosenImageView,this));
         }
     }
 
+    /*Result of permission request*/
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case 1: {
-                // If request is cancelled, the result arrays are empty.
+            case PERMISSION_REQUEST_CODE: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Kick off the loader
+                    /* Kick off the loader*/
                     getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
                 } else {
+                    /*Don't show items*/
                 }
             }
         }

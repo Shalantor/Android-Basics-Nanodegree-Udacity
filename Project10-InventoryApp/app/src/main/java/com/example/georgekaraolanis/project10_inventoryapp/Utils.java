@@ -41,7 +41,9 @@ public class Utils {
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             bmOptions.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(input, null, bmOptions);
-            input.close();
+            if (input != null) {
+                input.close();
+            }
 
             int photoW = bmOptions.outWidth;
             int photoH = bmOptions.outHeight;
@@ -55,7 +57,9 @@ public class Utils {
 
             input = context.getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(input, null, bmOptions);
-            input.close();
+            if (input != null) {
+                input.close();
+            }
             return bitmap;
 
         } catch (FileNotFoundException fne) {
@@ -65,10 +69,12 @@ public class Utils {
             Log.e(LOG_TAG, "Failed to load image.", e);
             return null;
         } finally {
-            try {
-                input.close();
-            } catch (IOException ex) {
-                Log.e(LOG_TAG, "Failed to close stream", ex);
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException ex) {
+                    Log.e(LOG_TAG, "Failed to close stream", ex);
+                }
             }
         }
     }
